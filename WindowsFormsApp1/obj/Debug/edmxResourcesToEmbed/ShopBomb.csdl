@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShopBombModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CaseCategory">
+    <Key>
+      <PropertyRef Name="CaseCategoryID" />
+    </Key>
+    <Property Name="CaseCategoryID" Type="Int32" Nullable="false" />
+    <Property Name="CaseCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CustomerServices" Relationship="Self.FK_CustomerService_CaseCategory" FromRole="CaseCategory" ToRole="CustomerService" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ShopID" Type="Int32" />
+    <NavigationProperty Name="Shop" Relationship="Self.FK_Customer_Shop" FromRole="Customer" ToRole="Shop" />
+    <NavigationProperty Name="CustomerServices" Relationship="Self.FK_CustomerService_Customer" FromRole="Customer" ToRole="CustomerService" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_OrderDetails_Customer" FromRole="Customer" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="CustomerService">
+    <Key>
+      <PropertyRef Name="CaseID" />
+    </Key>
+    <Property Name="CaseID" Type="Int32" Nullable="false" />
+    <Property Name="CaseCategoryID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="CaseDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="CaseCategory" Relationship="Self.FK_CustomerService_CaseCategory" FromRole="CustomerService" ToRole="CaseCategory" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_CustomerService_Customer" FromRole="CustomerService" ToRole="Customer" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_CustomerService_Order" FromRole="CustomerService" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="ShopID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="fee" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="OrderNote" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Payment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_OrderDetails_Customer" FromRole="Order" ToRole="Customer" />
+    <NavigationProperty Name="CustomerServices" Relationship="Self.FK_CustomerService_Order" FromRole="Order" ToRole="CustomerService" />
+    <NavigationProperty Name="Shop" Relationship="Self.FK_Order_Shop" FromRole="Order" ToRole="Shop" />
+    <NavigationProperty Name="OrderDetail" Relationship="Self.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
+    <NavigationProperty Name="Ships" Relationship="Self.FK_Ship_OrderDetails" FromRole="Order" ToRole="Ship" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Discount" Type="Single" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_OrderDetail_Products" FromRole="OrderDetail" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Stock" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ShopID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_Products" FromRole="Products" ToRole="OrderDetail" />
+    <NavigationProperty Name="Shop" Relationship="Self.FK_Products_ShopPage" FromRole="Products" ToRole="Shop" />
+  </EntityType>
+  <EntityType Name="Ship">
+    <Key>
+      <PropertyRef Name="ShipID" />
+    </Key>
+    <Property Name="ShipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="ShipMethod" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeliveryAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ShipperContact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RequiredDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ShippedDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Ship_OrderDetails" FromRole="Ship" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Shop">
+    <Key>
+      <PropertyRef Name="ShopID" />
+    </Key>
+    <Property Name="ShopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ShopName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ShopCategoryID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_Shop" FromRole="Shop" ToRole="Customer" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Shop" FromRole="Shop" ToRole="Order" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_ShopPage" FromRole="Shop" ToRole="Products" />
+    <NavigationProperty Name="ShopCategory" Relationship="Self.FK_ShopPage_Category" FromRole="Shop" ToRole="ShopCategory" />
+  </EntityType>
+  <EntityType Name="ShopCategory">
+    <Key>
+      <PropertyRef Name="ShopCategoryID" />
+    </Key>
+    <Property Name="ShopCategoryID" Type="Int32" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Shops" Relationship="Self.FK_ShopPage_Category" FromRole="ShopCategory" ToRole="Shop" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_CustomerService_CaseCategory">
+    <End Role="CaseCategory" Type="Self.CaseCategory" Multiplicity="1" />
+    <End Role="CustomerService" Type="Self.CustomerService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CaseCategory">
+        <PropertyRef Name="CaseCategoryID" />
+      </Principal>
+      <Dependent Role="CustomerService">
+        <PropertyRef Name="CaseCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_Shop">
+    <End Role="Shop" Type="Self.Shop" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="ShopID" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="ShopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerService_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="CustomerService" Type="Self.CustomerService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="CustomerService">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerService_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="CustomerService" Type="Self.CustomerService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="CustomerService">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Shop">
+    <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="ShopID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="ShopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ship_OrderDetails">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="Ship" Type="Self.Ship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="Ship">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Products">
+    <End Role="Products" Type="Self.Product" Multiplicity="1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_ShopPage">
+    <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
+    <End Role="Products" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="ShopID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="ShopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShopPage_Category">
+    <End Role="ShopCategory" Type="Self.ShopCategory" Multiplicity="1" />
+    <End Role="Shop" Type="Self.Shop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ShopCategory">
+        <PropertyRef Name="ShopCategoryID" />
+      </Principal>
+      <Dependent Role="Shop">
+        <PropertyRef Name="ShopCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ShopBombEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CaseCategories" EntityType="Self.CaseCategory" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="CustomerServices" EntityType="Self.CustomerService" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Ships" EntityType="Self.Ship" />
+    <EntitySet Name="Shops" EntityType="Self.Shop" />
+    <EntitySet Name="ShopCategories" EntityType="Self.ShopCategory" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_CustomerService_CaseCategory" Association="Self.FK_CustomerService_CaseCategory">
+      <End Role="CaseCategory" EntitySet="CaseCategories" />
+      <End Role="CustomerService" EntitySet="CustomerServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_Shop" Association="Self.FK_Customer_Shop">
+      <End Role="Shop" EntitySet="Shops" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerService_Customer" Association="Self.FK_CustomerService_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="CustomerService" EntitySet="CustomerServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Customer" Association="Self.FK_OrderDetails_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerService_Order" Association="Self.FK_CustomerService_Order">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="CustomerService" EntitySet="CustomerServices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Shop" Association="Self.FK_Order_Shop">
+      <End Role="Shop" EntitySet="Shops" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ship_OrderDetails" Association="Self.FK_Ship_OrderDetails">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="Ship" EntitySet="Ships" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Products" Association="Self.FK_OrderDetail_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_ShopPage" Association="Self.FK_Products_ShopPage">
+      <End Role="Shop" EntitySet="Shops" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShopPage_Category" Association="Self.FK_ShopPage_Category">
+      <End Role="ShopCategory" EntitySet="ShopCategories" />
+      <End Role="Shop" EntitySet="Shops" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ShopBombModel1.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ShopBombModel1.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

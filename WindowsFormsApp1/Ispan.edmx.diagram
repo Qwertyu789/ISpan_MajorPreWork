@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0fec2f62920a4ff69df17db7be4e68ad" Name="Diagram1">
+        <EntityTypeShape EntityType="iSpanProjectModel.Argument" Width="1.5" PointX="10.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.ArgumentType" Width="1.5" PointX="8.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.Comment" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.EventToProduct" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.EventToSalesCourt" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.FAQ" Width="1.5" PointX="10.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.MemberAccount" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.OrderDetail" Width="1.5" PointX="10.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.Order" Width="1.5" PointX="8.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.ProductDetail" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.Product" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.ProductsImage" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.ProductType" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.RegionList" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.Shipper" Width="1.5" PointX="8.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="iSpanProjectModel.sysdiagram" Width="1.5" PointX="10.75" PointY="13.375" IsExpanded="true" />
+        <AssociationConnector Association="iSpanProjectModel.FK_Argument_ArgumentType" ManuallyRouted="false" />
+        <AssociationConnector Association="iSpanProjectModel.FK_Argument_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="iSpanProjectModel.FK_Comment_MemberAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="iSpanProjectModel.FK_Comment_SalesCourt" ManuallyRouted="false" />
+        <AssociationConnector Association="iSpanProjectModel.FK_Product_EventToProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="iSpanProjectModel.FK_SalesCourt_Event" ManuallyRouted="false" />
+        <AssociationConnector Association="iSpanProjectModel.FK_MemberAccount_RegionList" ManuallyRouted="false" />
+        <AssociationConnector Association="iSpanProjectModel.FK_Orders_MemberAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="iSpanProjectModel.FK_SalesCourt_MemberAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="iSpanProjectModel.FK_OrderDetails_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="iSpanProjectModel.FK_OrderDetails_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="iSpanProjectModel.FK_OrderDetails_Shipper" ManuallyRouted="false" />
+        <AssociationConnector Association="iSpanProjectModel.FK_Orders_SalesCourt" ManuallyRouted="false" />
+        <AssociationConnector Association="iSpanProjectModel.FK_Product_SalesCourt" ManuallyRouted="false" />
+        <AssociationConnector Association="iSpanProjectModel.FK_Products_ProductsImages" ManuallyRouted="false" />
+        <AssociationConnector Association="iSpanProjectModel.FK_SalesCourt_ProductType" ManuallyRouted="false" />
+        <AssociationConnector Association="iSpanProjectModel.FK_SalesCourt_RegionList" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

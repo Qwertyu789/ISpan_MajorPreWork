@@ -1,0 +1,536 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="iSpanProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Argument">
+    <Key>
+      <PropertyRef Name="ArgumentID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="ArgumentID" Type="Int32" Nullable="false" />
+    <Property Name="ChangeorReturn" Type="Boolean" />
+    <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Image1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="Image2" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Image3" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ArgumentTypeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ArgumentType" Relationship="Self.FK_Argument_ArgumentType" FromRole="Argument" ToRole="ArgumentType" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Argument_Orders" FromRole="Argument" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="ArgumentType">
+    <Key>
+      <PropertyRef Name="ArgumentTypeID" />
+    </Key>
+    <Property Name="ArgumentTypeID" Type="Int32" Nullable="false" />
+    <Property Name="ArgumentTypeName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Arguments" Relationship="Self.FK_Argument_ArgumentType" FromRole="ArgumentType" ToRole="Argument" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="CommentID" />
+    </Key>
+    <Property Name="SalesCourtID" Type="Int32" Nullable="false" />
+    <Property Name="MemberID" Type="Int32" Nullable="false" />
+    <Property Name="Comment1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Star" Type="Byte" Nullable="false" />
+    <Property Name="CommentID" Type="Int32" Nullable="false" />
+    <Property Name="Imaga1" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Imaga2" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Image3" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="MemberAccount" Relationship="Self.FK_Comment_MemberAccount" FromRole="Comment" ToRole="MemberAccount" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Comment_SalesCourt" FromRole="Comment" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="EventToProduct">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="EventName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EventContent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ProductDetails" Relationship="Self.FK_Product_EventToProduct" FromRole="EventToProduct" ToRole="ProductDetail" />
+  </EntityType>
+  <EntityType Name="EventToSalesCourt">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="EventName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EventContent" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_SalesCourt_Event" FromRole="EventToSalesCourt" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="FAQ">
+    <Key>
+      <PropertyRef Name="FAQID" />
+    </Key>
+    <Property Name="FAQID" Type="Int32" Nullable="false" />
+    <Property Name="Answer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Question" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MemberAccount">
+    <Key>
+      <PropertyRef Name="MemberID" />
+    </Key>
+    <Property Name="MemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberAcc" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MemberPw" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TWorNOT" Type="Boolean" Nullable="false" />
+    <Property Name="RegionID" Type="Int32" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BackUpEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_MemberAccount" FromRole="MemberAccount" ToRole="Comment" />
+    <NavigationProperty Name="RegionList" Relationship="Self.FK_MemberAccount_RegionList" FromRole="MemberAccount" ToRole="RegionList" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_MemberAccount" FromRole="MemberAccount" ToRole="Orders" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_SalesCourt_MemberAccount" FromRole="MemberAccount" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="OrderDetailID" />
+    </Key>
+    <Property Name="OrderDetailID" Type="Int32" Nullable="false" />
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="Discount" Type="Decimal" Precision="3" Scale="2" />
+    <Property Name="ShipperID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="ShippingDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="RecieveDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OutAdr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetails_Orders" FromRole="OrderDetails" ToRole="Orders" />
+    <NavigationProperty Name="ProductDetail" Relationship="Self.FK_OrderDetails_Product" FromRole="OrderDetails" ToRole="ProductDetail" />
+    <NavigationProperty Name="Shipper" Relationship="Self.FK_OrderDetails_Shipper" FromRole="OrderDetails" ToRole="Shipper" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="MemberID" Type="Int32" Nullable="false" />
+    <Property Name="OrderDatetime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RecieveAdr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SalesCourtID" Type="Int32" Nullable="false" />
+    <Property Name="FinishDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Arguments" Relationship="Self.FK_Argument_Orders" FromRole="Orders" ToRole="Argument" />
+    <NavigationProperty Name="MemberAccount" Relationship="Self.FK_Orders_MemberAccount" FromRole="Orders" ToRole="MemberAccount" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Orders" FromRole="Orders" ToRole="OrderDetails" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Orders_SalesCourt" FromRole="Orders" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="ProductDetail">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SalesCourtID" Type="Int32" Nullable="false" />
+    <Property Name="Style" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EventID" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="EventToProduct" Relationship="Self.FK_Product_EventToProduct" FromRole="ProductDetail" ToRole="EventToProduct" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Product" FromRole="ProductDetail" ToRole="OrderDetails" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product_SalesCourt" FromRole="ProductDetail" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="SalesCourtID" />
+    </Key>
+    <Property Name="SalesCourtID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourtName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TypeID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="MemberID" Type="Int32" Nullable="false" />
+    <Property Name="RegionID" Type="Int32" Nullable="false" />
+    <Property Name="AdFee" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="600" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ImageID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_SalesCourt" FromRole="Products" ToRole="Comment" />
+    <NavigationProperty Name="EventToSalesCourt" Relationship="Self.FK_SalesCourt_Event" FromRole="Products" ToRole="EventToSalesCourt" />
+    <NavigationProperty Name="MemberAccount" Relationship="Self.FK_SalesCourt_MemberAccount" FromRole="Products" ToRole="MemberAccount" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_SalesCourt" FromRole="Products" ToRole="Orders" />
+    <NavigationProperty Name="ProductDetails" Relationship="Self.FK_Product_SalesCourt" FromRole="Products" ToRole="ProductDetail" />
+    <NavigationProperty Name="ProductsImage" Relationship="Self.FK_Products_ProductsImages" FromRole="Products" ToRole="ProductsImages" />
+    <NavigationProperty Name="ProductType" Relationship="Self.FK_SalesCourt_ProductType" FromRole="Products" ToRole="ProductType" />
+    <NavigationProperty Name="RegionList" Relationship="Self.FK_SalesCourt_RegionList" FromRole="Products" ToRole="RegionList" />
+  </EntityType>
+  <EntityType Name="ProductsImage">
+    <Key>
+      <PropertyRef Name="ImageID" />
+    </Key>
+    <Property Name="ImageID" Type="Int32" Nullable="false" />
+    <Property Name="Images" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_ProductsImages" FromRole="ProductsImages" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="ProductType">
+    <Key>
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="TypeID" Type="Int32" Nullable="false" />
+    <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_SalesCourt_ProductType" FromRole="ProductType" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="RegionList">
+    <Key>
+      <PropertyRef Name="RegionID" />
+    </Key>
+    <Property Name="RegionID" Type="Int32" Nullable="false" />
+    <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="MemberAccounts" Relationship="Self.FK_MemberAccount_RegionList" FromRole="RegionList" ToRole="MemberAccount" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_SalesCourt_RegionList" FromRole="RegionList" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Shipper">
+    <Key>
+      <PropertyRef Name="ShipperID" />
+    </Key>
+    <Property Name="ShipperID" Type="Int32" Nullable="false" />
+    <Property Name="ShipperName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Shipper" FromRole="Shipper" ToRole="OrderDetails" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Argument_ArgumentType">
+    <End Role="ArgumentType" Type="Self.ArgumentType" Multiplicity="1" />
+    <End Role="Argument" Type="Self.Argument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ArgumentType">
+        <PropertyRef Name="ArgumentTypeID" />
+      </Principal>
+      <Dependent Role="Argument">
+        <PropertyRef Name="ArgumentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Argument_Orders">
+    <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+    <End Role="Argument" Type="Self.Argument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="Argument">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="MemberID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="MemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_SalesCourt">
+    <End Role="Products" Type="Self.Product" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="SalesCourtID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="SalesCourtID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_EventToProduct">
+    <End Role="EventToProduct" Type="Self.EventToProduct" Multiplicity="0..1" />
+    <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventToProduct">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="ProductDetail">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesCourt_Event">
+    <End Role="EventToSalesCourt" Type="Self.EventToSalesCourt" Multiplicity="1" />
+    <End Role="Products" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventToSalesCourt">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MemberAccount_RegionList">
+    <End Role="RegionList" Type="Self.RegionList" Multiplicity="1" />
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegionList">
+        <PropertyRef Name="RegionID" />
+      </Principal>
+      <Dependent Role="MemberAccount">
+        <PropertyRef Name="RegionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="MemberID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="MemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesCourt_MemberAccount">
+    <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
+    <End Role="Products" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberAccount">
+        <PropertyRef Name="MemberID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="MemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Orders">
+    <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Product">
+    <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="1" />
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductDetail">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Shipper">
+    <End Role="Shipper" Type="Self.Shipper" Multiplicity="1" />
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shipper">
+        <PropertyRef Name="ShipperID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="ShipperID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_SalesCourt">
+    <End Role="Products" Type="Self.Product" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="SalesCourtID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="SalesCourtID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_SalesCourt">
+    <End Role="Products" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="SalesCourtID" />
+      </Principal>
+      <Dependent Role="ProductDetail">
+        <PropertyRef Name="SalesCourtID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_ProductsImages">
+    <End Role="ProductsImages" Type="Self.ProductsImage" Multiplicity="1" />
+    <End Role="Products" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductsImages">
+        <PropertyRef Name="ImageID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="ImageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesCourt_ProductType">
+    <End Role="ProductType" Type="Self.ProductType" Multiplicity="1" />
+    <End Role="Products" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductType">
+        <PropertyRef Name="TypeID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesCourt_RegionList">
+    <End Role="RegionList" Type="Self.RegionList" Multiplicity="1" />
+    <End Role="Products" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RegionList">
+        <PropertyRef Name="RegionID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="RegionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="iSpanProjectEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Arguments" EntityType="Self.Argument" />
+    <EntitySet Name="ArgumentTypes" EntityType="Self.ArgumentType" />
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="EventToProducts" EntityType="Self.EventToProduct" />
+    <EntitySet Name="EventToSalesCourts" EntityType="Self.EventToSalesCourt" />
+    <EntitySet Name="FAQs" EntityType="Self.FAQ" />
+    <EntitySet Name="MemberAccounts" EntityType="Self.MemberAccount" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="ProductDetails" EntityType="Self.ProductDetail" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="ProductsImages" EntityType="Self.ProductsImage" />
+    <EntitySet Name="ProductTypes" EntityType="Self.ProductType" />
+    <EntitySet Name="RegionLists" EntityType="Self.RegionList" />
+    <EntitySet Name="Shippers" EntityType="Self.Shipper" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_Argument_ArgumentType" Association="Self.FK_Argument_ArgumentType">
+      <End Role="ArgumentType" EntitySet="ArgumentTypes" />
+      <End Role="Argument" EntitySet="Arguments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Argument_Orders" Association="Self.FK_Argument_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Argument" EntitySet="Arguments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_MemberAccount" Association="Self.FK_Comment_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccounts" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_SalesCourt" Association="Self.FK_Comment_SalesCourt">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_EventToProduct" Association="Self.FK_Product_EventToProduct">
+      <End Role="EventToProduct" EntitySet="EventToProducts" />
+      <End Role="ProductDetail" EntitySet="ProductDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesCourt_Event" Association="Self.FK_SalesCourt_Event">
+      <End Role="EventToSalesCourt" EntitySet="EventToSalesCourts" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MemberAccount_RegionList" Association="Self.FK_MemberAccount_RegionList">
+      <End Role="RegionList" EntitySet="RegionLists" />
+      <End Role="MemberAccount" EntitySet="MemberAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_MemberAccount" Association="Self.FK_Orders_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccounts" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesCourt_MemberAccount" Association="Self.FK_SalesCourt_MemberAccount">
+      <End Role="MemberAccount" EntitySet="MemberAccounts" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Orders" Association="Self.FK_OrderDetails_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Product" Association="Self.FK_OrderDetails_Product">
+      <End Role="ProductDetail" EntitySet="ProductDetails" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Shipper" Association="Self.FK_OrderDetails_Shipper">
+      <End Role="Shipper" EntitySet="Shippers" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_SalesCourt" Association="Self.FK_Orders_SalesCourt">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_SalesCourt" Association="Self.FK_Product_SalesCourt">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductDetail" EntitySet="ProductDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_ProductsImages" Association="Self.FK_Products_ProductsImages">
+      <End Role="ProductsImages" EntitySet="ProductsImages" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesCourt_ProductType" Association="Self.FK_SalesCourt_ProductType">
+      <End Role="ProductType" EntitySet="ProductTypes" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesCourt_RegionList" Association="Self.FK_SalesCourt_RegionList">
+      <End Role="RegionList" EntitySet="RegionLists" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(iSpanProjectModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(iSpanProjectModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
