@@ -12,27 +12,31 @@ namespace WindowsFormsApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class Orders
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Order()
+        public Orders()
         {
-            this.Arguments = new HashSet<Argument>();
-            this.OrderDetails = new HashSet<OrderDetail>();
+            this.Argument = new HashSet<Argument>();
+            this.OrderDetails = new HashSet<OrderDetails>();
         }
     
         public int OrderID { get; set; }
         public int MemberID { get; set; }
         public System.DateTime OrderDatetime { get; set; }
         public string RecieveAdr { get; set; }
-        public int SalesCourtID { get; set; }
+        public int ProductID { get; set; }
         public System.DateTime FinishDate { get; set; }
+        public int CouponID { get; set; }
+        public int StatusID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Argument> Arguments { get; set; }
+        public virtual ICollection<Argument> Argument { get; set; }
+        public virtual Coupons Coupons { get; set; }
         public virtual MemberAccount MemberAccount { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
         public virtual Product Product { get; set; }
+        public virtual Statuses Statuses { get; set; }
     }
 }

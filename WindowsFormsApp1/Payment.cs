@@ -10,10 +10,12 @@
 namespace WindowsFormsApp1
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class Payment
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int PaymentID { get; set; }
+        public string PaymentName { get; set; }
+        public decimal Fee { get; set; }
     }
 }

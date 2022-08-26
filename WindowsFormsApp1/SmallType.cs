@@ -12,21 +12,20 @@ namespace WindowsFormsApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class EventToProduct
+    public partial class SmallType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EventToProduct()
+        public SmallType()
         {
-            this.ProductDetails = new HashSet<ProductDetail>();
+            this.Product = new HashSet<Product>();
         }
     
-        public int EventID { get; set; }
-        public string EventName { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public System.DateTime EndDate { get; set; }
-        public string EventContent { get; set; }
+        public int SmallTypeID { get; set; }
+        public string SmallTypeName { get; set; }
+        public int BigTypeID { get; set; }
     
+        public virtual BigType BigType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductDetail> ProductDetails { get; set; }
+        public virtual ICollection<Product> Product { get; set; }
     }
 }

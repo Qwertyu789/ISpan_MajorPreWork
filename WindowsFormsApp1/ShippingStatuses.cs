@@ -12,21 +12,18 @@ namespace WindowsFormsApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class EventToSalesCourt
+    public partial class ShippingStatuses
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EventToSalesCourt()
+        public ShippingStatuses()
         {
-            this.Products = new HashSet<Product>();
+            this.OrderDetails = new HashSet<OrderDetails>();
         }
     
-        public int EventID { get; set; }
-        public string EventName { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public System.DateTime EndDate { get; set; }
-        public string EventContent { get; set; }
+        public int ShippingStatusID { get; set; }
+        public string ShipStatusName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

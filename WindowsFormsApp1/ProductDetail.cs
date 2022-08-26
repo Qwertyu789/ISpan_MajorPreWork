@@ -17,20 +17,18 @@ namespace WindowsFormsApp1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ProductDetail()
         {
-            this.OrderDetails = new HashSet<OrderDetail>();
+            this.OrderDetails = new HashSet<OrderDetails>();
         }
     
+        public int ProductDetailID { get; set; }
         public int ProductID { get; set; }
-        public int SalesCourtID { get; set; }
         public string Style { get; set; }
-        public Nullable<int> EventID { get; set; }
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
-        public byte[] Image { get; set; }
+        public byte[] Pic { get; set; }
     
-        public virtual EventToProduct EventToProduct { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
         public virtual Product Product { get; set; }
     }
 }

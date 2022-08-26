@@ -17,9 +17,13 @@ namespace WindowsFormsApp1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MemberAccount()
         {
-            this.Comments = new HashSet<Comment>();
-            this.Orders = new HashSet<Order>();
-            this.Products = new HashSet<Product>();
+            this.Comment = new HashSet<Comment>();
+            this.Follows = new HashSet<Follows>();
+            this.Follows1 = new HashSet<Follows>();
+            this.Likes = new HashSet<Likes>();
+            this.Orders = new HashSet<Orders>();
+            this.Product = new HashSet<Product>();
+            this.Wallet = new HashSet<Wallet>();
         }
     
         public int MemberID { get; set; }
@@ -34,13 +38,23 @@ namespace WindowsFormsApp1
         public string NickName { get; set; }
         public string Name { get; set; }
         public System.DateTime Birthday { get; set; }
+        public string Bio { get; set; }
+        public byte[] MemPic { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Follows> Follows { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Follows> Follows1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Likes> Likes { get; set; }
         public virtual RegionList RegionList { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Orders> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Product> Product { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Wallet> Wallet { get; set; }
     }
 }

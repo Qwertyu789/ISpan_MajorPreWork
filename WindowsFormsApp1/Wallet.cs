@@ -10,13 +10,15 @@
 namespace WindowsFormsApp1
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class Wallet
     {
-        public string Database { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public int MemberID { get; set; }
+        public int WalletID { get; set; }
+        public int CouponID { get; set; }
+    
+        public virtual Coupons Coupons { get; set; }
+        public virtual MemberAccount MemberAccount { get; set; }
     }
 }

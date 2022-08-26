@@ -7,11 +7,13 @@ C:\Major\HomeWork\slnMajorHW\WindowsFormsApp1\bin\Debug\EntityFramework.xml
 C:\Major\HomeWork\slnMajorHW\WindowsFormsApp1\bin\Debug\EntityFramework.SqlServer.xml
 C:\Major\HomeWork\slnMajorHW\WindowsFormsApp1\bin\Debug\zh-Hant\EntityFramework.resources.dll
 C:\Major\HomeWork\slnMajorHW\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojAssemblyReference.cache
-C:\Major\HomeWork\slnMajorHW\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
 C:\Major\HomeWork\slnMajorHW\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
 C:\Major\HomeWork\slnMajorHW\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
 C:\Major\HomeWork\slnMajorHW\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
 C:\Major\HomeWork\slnMajorHW\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
 C:\Major\HomeWork\slnMajorHW\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Major\HomeWork\slnMajorHW\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
-C:\Major\HomeWork\slnMajorHW\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Sales.resources
+C:\Major\HomeWork\slnMajorHW\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Login.resources
+C:\Major\HomeWork\slnMajorHW\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.MemberUpdate.resources
+C:\Major\HomeWork\slnMajorHW\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.BuildData.resources
+C:\Major\HomeWork\slnMajorHW\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.MainPage.resources

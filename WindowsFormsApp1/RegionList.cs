@@ -17,16 +17,16 @@ namespace WindowsFormsApp1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public RegionList()
         {
-            this.MemberAccounts = new HashSet<MemberAccount>();
-            this.Products = new HashSet<Product>();
+            this.MemberAccount = new HashSet<MemberAccount>();
+            this.Product = new HashSet<Product>();
         }
     
         public int RegionID { get; set; }
         public string Region { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MemberAccount> MemberAccounts { get; set; }
+        public virtual ICollection<MemberAccount> MemberAccount { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Product> Product { get; set; }
     }
 }

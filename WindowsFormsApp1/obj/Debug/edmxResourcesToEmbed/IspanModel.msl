@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="iSpanProjectModelStoreContainer" CdmEntityContainer="iSpanProjectEntities4">
+    <EntitySetMapping Name="AD">
+      <EntityTypeMapping TypeName="iSpanProjectModel.AD">
+        <MappingFragment StoreEntitySet="AD">
+          <ScalarProperty Name="AdID" ColumnName="AdID" />
+          <ScalarProperty Name="AdName" ColumnName="AdName" />
+          <ScalarProperty Name="AdFee" ColumnName="AdFee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ArguePic">
+      <EntityTypeMapping TypeName="iSpanProjectModel.ArguePic">
+        <MappingFragment StoreEntitySet="ArguePic">
+          <ScalarProperty Name="ArguePicID" ColumnName="ArguePicID" />
+          <ScalarProperty Name="ArguementID" ColumnName="ArguementID" />
+          <ScalarProperty Name="ArguePic1" ColumnName="ArguePic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Argument">
+      <EntityTypeMapping TypeName="iSpanProjectModel.Argument">
+        <MappingFragment StoreEntitySet="Argument">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="ArgumentID" ColumnName="ArgumentID" />
+          <ScalarProperty Name="ChangeorReturn" ColumnName="ChangeorReturn" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="ArgumentTypeID" ColumnName="ArgumentTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ArgumentType">
+      <EntityTypeMapping TypeName="iSpanProjectModel.ArgumentType">
+        <MappingFragment StoreEntitySet="ArgumentType">
+          <ScalarProperty Name="ArgumentTypeID" ColumnName="ArgumentTypeID" />
+          <ScalarProperty Name="ArgumentTypeName" ColumnName="ArgumentTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BigType">
+      <EntityTypeMapping TypeName="iSpanProjectModel.BigType">
+        <MappingFragment StoreEntitySet="BigType">
+          <ScalarProperty Name="BigTypeID" ColumnName="BigTypeID" />
+          <ScalarProperty Name="BigTypeName" ColumnName="BigTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comment">
+      <EntityTypeMapping TypeName="iSpanProjectModel.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="Comment1" ColumnName="Comment" />
+          <ScalarProperty Name="Star" ColumnName="Star" />
+          <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommentPic">
+      <EntityTypeMapping TypeName="iSpanProjectModel.CommentPic">
+        <MappingFragment StoreEntitySet="CommentPic">
+          <ScalarProperty Name="CommentPicID" ColumnName="CommentPicID" />
+          <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+          <ScalarProperty Name="CommentPic1" ColumnName="CommentPic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Coupons">
+      <EntityTypeMapping TypeName="iSpanProjectModel.Coupons">
+        <MappingFragment StoreEntitySet="Coupons">
+          <ScalarProperty Name="CouponID" ColumnName="CouponID" />
+          <ScalarProperty Name="CouponName" ColumnName="CouponName" />
+          <ScalarProperty Name="WalletID" ColumnName="WalletID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="ExpireN_A" ColumnName="ExpireN_A" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FAQ">
+      <EntityTypeMapping TypeName="iSpanProjectModel.FAQ">
+        <MappingFragment StoreEntitySet="FAQ">
+          <ScalarProperty Name="FAQID" ColumnName="FAQID" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Follows">
+      <EntityTypeMapping TypeName="iSpanProjectModel.Follows">
+        <MappingFragment StoreEntitySet="Follows">
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="FollowID" ColumnName="FollowID" />
+          <ScalarProperty Name="FollowedMemID" ColumnName="FollowedMemID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Likes">
+      <EntityTypeMapping TypeName="iSpanProjectModel.Likes">
+        <MappingFragment StoreEntitySet="Likes">
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="LikeID" ColumnName="LikeID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemberAccount">
+      <EntityTypeMapping TypeName="iSpanProjectModel.MemberAccount">
+        <MappingFragment StoreEntitySet="MemberAccount">
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="MemberAcc" ColumnName="MemberAcc" />
+          <ScalarProperty Name="MemberPw" ColumnName="MemberPw" />
+          <ScalarProperty Name="TWorNOT" ColumnName="TWorNOT" />
+          <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="BackUpEmail" ColumnName="BackUpEmail" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="NickName" ColumnName="NickName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Bio" ColumnName="Bio" />
+          <ScalarProperty Name="MemPic" ColumnName="MemPic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="iSpanProjectModel.OrderDetails">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="ProductDetailID" ColumnName="ProductDetailID" />
+          <ScalarProperty Name="ShipperID" ColumnName="ShipperID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
+          <ScalarProperty Name="RecieveDate" ColumnName="RecieveDate" />
+          <ScalarProperty Name="OutAdr" ColumnName="OutAdr" />
+          <ScalarProperty Name="ShippingStatusID" ColumnName="ShippingStatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="iSpanProjectModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="OrderDatetime" ColumnName="OrderDatetime" />
+          <ScalarProperty Name="RecieveAdr" ColumnName="RecieveAdr" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+          <ScalarProperty Name="CouponID" ColumnName="CouponID" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payment">
+      <EntityTypeMapping TypeName="iSpanProjectModel.Payment">
+        <MappingFragment StoreEntitySet="Payment">
+          <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+          <ScalarProperty Name="PaymentName" ColumnName="PaymentName" />
+          <ScalarProperty Name="Fee" ColumnName="Fee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="iSpanProjectModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="SmallTypeID" ColumnName="SmallTypeID" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+          <ScalarProperty Name="AdFee" ColumnName="AdFee" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ShipperID" ColumnName="ShipperID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductDetail">
+      <EntityTypeMapping TypeName="iSpanProjectModel.ProductDetail">
+        <MappingFragment StoreEntitySet="ProductDetail">
+          <ScalarProperty Name="ProductDetailID" ColumnName="ProductDetailID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Style" ColumnName="Style" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Pic" ColumnName="Pic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductPic">
+      <EntityTypeMapping TypeName="iSpanProjectModel.ProductPic">
+        <MappingFragment StoreEntitySet="ProductPic">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="PicID" ColumnName="PicID" />
+          <ScalarProperty Name="picture" ColumnName="picture" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegionList">
+      <EntityTypeMapping TypeName="iSpanProjectModel.RegionList">
+        <MappingFragment StoreEntitySet="RegionList">
+          <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shipper">
+      <EntityTypeMapping TypeName="iSpanProjectModel.Shipper">
+        <MappingFragment StoreEntitySet="Shipper">
+          <ScalarProperty Name="ShipperID" ColumnName="ShipperID" />
+          <ScalarProperty Name="ShipperName" ColumnName="ShipperName" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShippingStatuses">
+      <EntityTypeMapping TypeName="iSpanProjectModel.ShippingStatuses">
+        <MappingFragment StoreEntitySet="ShippingStatuses">
+          <ScalarProperty Name="ShippingStatusID" ColumnName="ShippingStatusID" />
+          <ScalarProperty Name="ShipStatusName" ColumnName="ShipStatusName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SmallType">
+      <EntityTypeMapping TypeName="iSpanProjectModel.SmallType">
+        <MappingFragment StoreEntitySet="SmallType">
+          <ScalarProperty Name="SmallTypeID" ColumnName="SmallTypeID" />
+          <ScalarProperty Name="SmallTypeName" ColumnName="SmallTypeName" />
+          <ScalarProperty Name="BigTypeID" ColumnName="BigTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Statuses">
+      <EntityTypeMapping TypeName="iSpanProjectModel.Statuses">
+        <MappingFragment StoreEntitySet="Statuses">
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Wallet">
+      <EntityTypeMapping TypeName="iSpanProjectModel.Wallet">
+        <MappingFragment StoreEntitySet="Wallet">
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="WalletID" ColumnName="WalletID" />
+          <ScalarProperty Name="CouponID" ColumnName="CouponID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

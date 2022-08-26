@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApp1
+namespace MajorHW
 {
     partial class Login
     {
@@ -36,6 +36,9 @@ namespace WindowsFormsApp1
             this.lbPW = new System.Windows.Forms.Label();
             this.btnCreateAC = new System.Windows.Forms.Button();
             this.btnFindPW = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnCancel = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnlogin
@@ -43,10 +46,11 @@ namespace WindowsFormsApp1
             this.btnlogin.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnlogin.Location = new System.Drawing.Point(275, 41);
             this.btnlogin.Name = "btnlogin";
-            this.btnlogin.Size = new System.Drawing.Size(172, 95);
+            this.btnlogin.Size = new System.Drawing.Size(172, 67);
             this.btnlogin.TabIndex = 0;
             this.btnlogin.Text = "login";
             this.btnlogin.UseVisualStyleBackColor = true;
+            this.btnlogin.Click += new System.EventHandler(this.btnlogin_Click);
             // 
             // lbAC
             // 
@@ -65,20 +69,22 @@ namespace WindowsFormsApp1
             this.tbAC.Name = "tbAC";
             this.tbAC.Size = new System.Drawing.Size(166, 35);
             this.tbAC.TabIndex = 2;
+            this.tbAC.Text = "aaaa";
             // 
             // tbPW
             // 
             this.tbPW.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbPW.Location = new System.Drawing.Point(103, 97);
+            this.tbPW.Location = new System.Drawing.Point(103, 107);
             this.tbPW.Name = "tbPW";
             this.tbPW.Size = new System.Drawing.Size(166, 35);
             this.tbPW.TabIndex = 4;
+            this.tbPW.Text = "123";
             // 
             // lbPW
             // 
             this.lbPW.AutoSize = true;
             this.lbPW.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lbPW.Location = new System.Drawing.Point(24, 104);
+            this.lbPW.Location = new System.Drawing.Point(24, 114);
             this.lbPW.Name = "lbPW";
             this.lbPW.Size = new System.Drawing.Size(75, 26);
             this.lbPW.TabIndex = 3;
@@ -104,11 +110,33 @@ namespace WindowsFormsApp1
             this.btnFindPW.Text = "忘記密碼";
             this.btnFindPW.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(522, 48);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(407, 188);
+            this.dataGridView1.TabIndex = 7;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnCancel.Location = new System.Drawing.Point(275, 114);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(172, 28);
+            this.btnCancel.TabIndex = 8;
+            this.btnCancel.Text = "cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(466, 261);
+            this.ClientSize = new System.Drawing.Size(941, 261);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnFindPW);
             this.Controls.Add(this.btnCreateAC);
             this.Controls.Add(this.tbPW);
@@ -116,8 +144,10 @@ namespace WindowsFormsApp1
             this.Controls.Add(this.tbAC);
             this.Controls.Add(this.lbAC);
             this.Controls.Add(this.btnlogin);
-            this.Name = "Form1";
+            this.Name = "Login";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_FormClosing);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,6 +162,8 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Label lbPW;
         private System.Windows.Forms.Button btnCreateAC;
         private System.Windows.Forms.Button btnFindPW;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
 

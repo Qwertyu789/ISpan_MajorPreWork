@@ -14,16 +14,21 @@ namespace WindowsFormsApp1
     
     public partial class Argument
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Argument()
+        {
+            this.ArguePic = new HashSet<ArguePic>();
+        }
+    
         public int OrderID { get; set; }
         public int ArgumentID { get; set; }
         public Nullable<bool> ChangeorReturn { get; set; }
         public string Reason { get; set; }
-        public byte[] Image1 { get; set; }
-        public byte[] Image2 { get; set; }
-        public byte[] Image3 { get; set; }
         public int ArgumentTypeID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ArguePic> ArguePic { get; set; }
         public virtual ArgumentType ArgumentType { get; set; }
-        public virtual Order Order { get; set; }
+        public virtual Orders Orders { get; set; }
     }
 }

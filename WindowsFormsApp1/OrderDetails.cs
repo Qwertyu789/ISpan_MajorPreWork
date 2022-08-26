@@ -12,20 +12,21 @@ namespace WindowsFormsApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderDetail
+    public partial class OrderDetails
     {
         public int OrderDetailID { get; set; }
         public int OrderID { get; set; }
-        public int ProductID { get; set; }
-        public Nullable<decimal> Discount { get; set; }
+        public int ProductDetailID { get; set; }
         public int ShipperID { get; set; }
         public int Quantity { get; set; }
         public System.DateTime ShippingDate { get; set; }
         public System.DateTime RecieveDate { get; set; }
         public string OutAdr { get; set; }
+        public int ShippingStatusID { get; set; }
     
-        public virtual Order Order { get; set; }
+        public virtual Orders Orders { get; set; }
         public virtual ProductDetail ProductDetail { get; set; }
         public virtual Shipper Shipper { get; set; }
+        public virtual ShippingStatuses ShippingStatuses { get; set; }
     }
 }

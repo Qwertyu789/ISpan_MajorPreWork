@@ -12,12 +12,12 @@ namespace WindowsFormsApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagram
+    public partial class ArguePic
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int ArguePicID { get; set; }
+        public int ArguementID { get; set; }
+        public byte[] ArguePic1 { get; set; }
+    
+        public virtual Argument Argument { get; set; }
     }
 }

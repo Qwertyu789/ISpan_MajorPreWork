@@ -14,16 +14,21 @@ namespace WindowsFormsApp1
     
     public partial class Comment
     {
-        public int SalesCourtID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Comment()
+        {
+            this.CommentPic = new HashSet<CommentPic>();
+        }
+    
+        public int ProductID { get; set; }
         public int MemberID { get; set; }
         public string Comment1 { get; set; }
         public byte Star { get; set; }
         public int CommentID { get; set; }
-        public byte[] Imaga1 { get; set; }
-        public byte[] Imaga2 { get; set; }
-        public byte[] Image3 { get; set; }
     
         public virtual MemberAccount MemberAccount { get; set; }
         public virtual Product Product { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CommentPic> CommentPic { get; set; }
     }
 }
