@@ -154,6 +154,12 @@
     <Compile Include="ProductDetail.cs">
       <DependentUpon>Ispan.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductIcon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProductIcon.Designer.cs">
+      <DependentUpon>ProductIcon.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductPic.cs">
       <DependentUpon>Ispan.tt</DependentUpon>
     </Compile>
@@ -197,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainPage.resx">
       <DependentUpon>MainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductIcon.resx">
+      <DependentUpon>ProductIcon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

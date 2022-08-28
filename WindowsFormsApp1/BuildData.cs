@@ -17,7 +17,6 @@ namespace MajorHW
         public BuildData()
         {
             InitializeComponent();
-            show();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -139,14 +138,21 @@ namespace MajorHW
                 SmallTypeName = "大佬的狗",
                 BigTypeID=1                
             };
-
-
-            
+            newdb.Shipper.Add(sp0);
+            newdb.BigType.Add(bg0);
+            newdb.SmallType.Add(sm0);
+            newdb.SaveChanges();
         }
-        private void show()
+        private void button1_Click_1(object sender, EventArgs e)
         {
             this.dataGridView1.DataSource = null;
             this.dataGridView1.DataSource = this.newdb.MemberAccount.ToList();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            this.dataGridView1.DataSource = null;
+            this.dataGridView1.DataSource = this.newdb.Product.ToList();
         }
     }
 }

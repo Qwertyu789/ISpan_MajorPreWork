@@ -29,7 +29,7 @@ namespace MajorHW
         private void button1_Click(object sender, EventArgs e)
         {
             MemberUpdate m =  new MemberUpdate();
-            m.a = _Acc;
+            m._ac = _Acc;
             m.ShowDialog();
         }
     }

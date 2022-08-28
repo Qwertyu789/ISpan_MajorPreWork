@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="iSpanProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="iSpanProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AD">
           <Key>
             <PropertyRef Name="AdID" />
@@ -182,7 +182,7 @@
             <PropertyRef Name="PicID" />
           </Key>
           <Property Name="ProductID" Type="int" Nullable="false" />
-          <Property Name="PicID" Type="int" Nullable="false" />
+          <Property Name="PicID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="picture" Type="varbinary(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="RegionList">
@@ -350,7 +350,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MemberAccount_RegionList">
+        <Association Name="FK_MemberAccount_RegionList1">
           <End Role="RegionList" Type="Self.RegionList" Multiplicity="1" />
           <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="*" />
           <ReferentialConstraint>
@@ -631,7 +631,7 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="Likes" EntitySet="Likes" />
           </AssociationSet>
-          <AssociationSet Name="FK_MemberAccount_RegionList" Association="Self.FK_MemberAccount_RegionList">
+          <AssociationSet Name="FK_MemberAccount_RegionList1" Association="Self.FK_MemberAccount_RegionList1">
             <End Role="RegionList" EntitySet="RegionList" />
             <End Role="MemberAccount" EntitySet="MemberAccount" />
           </AssociationSet>
@@ -704,8 +704,7 @@
             <End Role="Wallet" EntitySet="Wallet" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="iSpanProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">

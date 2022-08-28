@@ -36,6 +36,8 @@ namespace MajorHW
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnR = new System.Windows.Forms.Button();
             this.btnProductprev = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pb1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -103,11 +105,33 @@ namespace MajorHW
             this.btnProductprev.UseVisualStyleBackColor = true;
             this.btnProductprev.Click += new System.EventHandler(this.btnProductprev_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 349);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(85, 44);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "show_mem";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(103, 349);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(85, 44);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "show_product";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // BuildData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1126, 551);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnProductprev);
             this.Controls.Add(this.btnR);
             this.Controls.Add(this.dataGridView1);
@@ -131,5 +155,7 @@ namespace MajorHW
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnR;
         private System.Windows.Forms.Button btnProductprev;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

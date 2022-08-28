@@ -14,7 +14,7 @@ namespace MajorHW
 {
     public partial class MemberUpdate : Form
     {
-        public string a = "";
+        public string _ac = "";
         byte[] img;
         iSpanProjectEntities5 iSpan = new iSpanProjectEntities5();
 
@@ -27,7 +27,7 @@ namespace MajorHW
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             var change = from mem in this.iSpan.MemberAccount
-                         where mem.MemberAcc == a
+                         where mem.MemberAcc == _ac
                          select mem;
             var mem2 = change.ToList()[0];
             var rgMem = from r2 in iSpan.RegionList
@@ -52,7 +52,7 @@ namespace MajorHW
         private void MemLoad()
         {
             var member = from mem in iSpan.MemberAccount
-                         where mem.MemberAcc == a
+                         where mem.MemberAcc == _ac
                          select new
                          {
                              Account = mem.MemberAcc,
@@ -92,7 +92,7 @@ namespace MajorHW
         private void cbTaiwan_CheckedChanged(object sender, EventArgs e)
         {
             var change = from mem in this.iSpan.MemberAccount
-                         where mem.MemberAcc == a
+                         where mem.MemberAcc == _ac
                          select mem;
             int rgid = change.ToList()[0].RegionID;
             var rgMem = from r2 in iSpan.RegionList
@@ -140,7 +140,7 @@ namespace MajorHW
             if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 this.pictureBox1.Image = Image.FromFile(this.openFileDialog1.FileName);
-            }
+            }            
             System.IO.MemoryStream ms = new System.IO.MemoryStream();
             this.pictureBox1.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
             img = ms.GetBuffer();

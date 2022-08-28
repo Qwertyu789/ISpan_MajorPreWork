@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1;
 
 namespace MajorHW
 {
@@ -18,7 +19,8 @@ namespace MajorHW
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Application.Run(new Login());
-            Application.Run(new MainPage());
+            //Application.Run(new MainPage());
+            Application.Run(new Sells());
             //Application.Run(new BuildData());
         }
     }
