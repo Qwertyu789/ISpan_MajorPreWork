@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1;
 
 namespace MajorHW
 {    
@@ -31,6 +32,12 @@ namespace MajorHW
             MemberUpdate m =  new MemberUpdate();
             m._ac = _Acc;
             m.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Sells s = new Sells();
+            s._ac = _Acc;
         }
     }
 }

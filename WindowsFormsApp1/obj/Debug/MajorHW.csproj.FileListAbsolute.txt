@@ -38,3 +38,5 @@ E:\VIsualStudio\source\repo\MajorHW\WindowsFormsApp1\obj\Debug\MajorHW.csproj.Co
 E:\VIsualStudio\source\repo\MajorHW\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 E:\VIsualStudio\source\repo\MajorHW\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
 E:\VIsualStudio\source\repo\MajorHW\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.ProductIcon.resources
+C:\Major\HomeWork\slnMajorHW\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.ProductIcon.resources
+C:\Major\HomeWork\slnMajorHW\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Sells.resources
