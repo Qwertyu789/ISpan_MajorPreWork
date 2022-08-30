@@ -16,7 +16,7 @@ namespace MajorHW
     {
         public string _ac = "";
         byte[] img;
-        iSpanProjectEntities5 iSpan = new iSpanProjectEntities5();
+        iSpanProjectEntities5 dbispan = new iSpanProjectEntities5();
 
         public MemberUpdate()
         {
@@ -26,11 +26,11 @@ namespace MajorHW
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            var change = from mem in this.iSpan.MemberAccount
+            var change = from mem in this.dbispan.MemberAccount
                          where mem.MemberAcc == _ac
                          select mem;
             var mem2 = change.ToList()[0];
-            var rgMem = from r2 in iSpan.RegionList
+            var rgMem = from r2 in dbispan.RegionList
                         where r2.Region == cobRegion.Text
                         select r2;
             mem2.MemberPw = tbPW.Text;
@@ -44,14 +44,14 @@ namespace MajorHW
             mem2.NickName = tbNickname.Text;
             mem2.Birthday = dpBirthday.Value;
             mem2.MemPic = img;
-            this.iSpan.SaveChanges();
+            this.dbispan.SaveChanges();
             MessageBox.Show("修改成功", "修改結果", MessageBoxButtons.OK);
             MemLoad();
 
         }
         private void MemLoad()
         {
-            var member = from mem in iSpan.MemberAccount
+            var member = from mem in dbispan.MemberAccount
                          where mem.MemberAcc == _ac
                          select new
                          {
@@ -69,7 +69,7 @@ namespace MajorHW
                              Picture = mem.MemPic
                          };
             var mem2 = member.ToList()[0];
-            var rgMem = from r2 in iSpan.RegionList
+            var rgMem = from r2 in dbispan.RegionList
                         where r2.RegionID == mem2.Region
                         select r2;
 
@@ -91,11 +91,11 @@ namespace MajorHW
 
         private void cbTaiwan_CheckedChanged(object sender, EventArgs e)
         {
-            var change = from mem in this.iSpan.MemberAccount
+            var change = from mem in this.dbispan.MemberAccount
                          where mem.MemberAcc == _ac
                          select mem;
             int rgid = change.ToList()[0].RegionID;
-            var rgMem = from r2 in iSpan.RegionList
+            var rgMem = from r2 in dbispan.RegionList
                         where r2.RegionID==rgid
                         select r2;
             if (cbTaiwan.Checked == true)
@@ -114,7 +114,7 @@ namespace MajorHW
         private void cbRegionLoad()
         {
             cobRegion.Items.Clear();
-            var region = from r in iSpan.RegionList
+            var region = from r in dbispan.RegionList
                          where r.RegionID > 0
                          orderby r.RegionID ascending
                          select r.Region;

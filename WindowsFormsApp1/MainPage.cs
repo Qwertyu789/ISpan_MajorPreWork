@@ -38,6 +38,7 @@ namespace MajorHW
         {
             Sells s = new Sells();
             s._ac = _Acc;
+            s.ShowDialog();
         }
     }
 }

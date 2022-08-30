@@ -14,19 +14,20 @@ namespace WindowsFormsApp1
     {
         private List<byte[]> imgsaver = new List<byte[]>();
         private Image tempimg;
-        public string _ac = "";
-        int _memid ,_typeid, _regionid, _shipperid, _product;
+        public string _ac { get; set; }
+        private int _memid, _typeid, _regionid, _shipperid, _product;
         private ProductIcon _selectedUC;
         bool _isnew = true;
         private iSpanProjectEntities5 dbispan = new iSpanProjectEntities5();
+        public List<ProductDetailStyleInfo> listpd = new List<ProductDetailStyleInfo>();
+
         public Sells()
         {
             InitializeComponent();
-            loading();
         }
         //基本載入 combobox
-        private void loading()
-        {
+        private void loadingdata()
+        {            
             var regions = from r in dbispan.RegionList
                           orderby r.RegionID ascending
                           select r.Region;
@@ -51,13 +52,22 @@ namespace WindowsFormsApp1
             cbProductRegion.Text = cbProductRegion.Items[0].ToString();
             cbProductShipper.Text = cbProductShipper.Items[0].ToString();
             cbProductType.Text = cbProductType.Items[0].ToString();
+            var ac = from mem in this.dbispan.MemberAccount
+                     where mem.MemberAcc == _ac
+                     select mem.MemberID;
+            _memid = ac.First();
         }
-        //重置/另開商品頁面
-        private void refresh()
+
+        private void reset()
         {
+            //顯示用區域清空
             dgProductList.DataSource = null;
             dgProductDetail.DataSource = null;
+            flowLayoutPanel1.Controls.Clear();
+            //清空temp用list
             imgsaver.Clear();
+            listpd.Count();
+            //填入內容清空
             cbProductType.Items.Clear();
             cbProductShipper.Items.Clear();
             cbProductRegion.Items.Clear();
@@ -67,7 +77,15 @@ namespace WindowsFormsApp1
 
 
             dgProductList.DataSource = dbispan.Product.ToList();
-            loading();
+            loadingdata();
+        }
+        //重置/另開商品頁面
+        private void restart()
+        {
+            //驗證區重置
+            _isnew = true;
+
+            reset();
         }
         //上傳照片
         private void btnPopulate_Click(object sender, EventArgs e)
@@ -83,14 +101,56 @@ namespace WindowsFormsApp1
                 picon.img = byteimg;
                 imgsaver.Add(byteimg);
                 picon.Click += new EventHandler(picture_click);
-
                 this.flowLayoutPanel1.Controls.Add(picon);
             }
         }
-
+        //新增規格
         private void btnAddProductDetail_Click(object sender, EventArgs e)
         {
+            ProductDetails pd = new ProductDetails();
+            pd.Owner = this;
+            pd.ShowDialog();
+            dgProductDetail.DataSource = null;
+            dgProductDetail.DataSource = listpd;
+        }
 
+        private void Sells_Load(object sender, EventArgs e)
+        {
+            restart();
+        }
+
+        private void dgProductList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            _isnew = false;
+            int pid = Convert.ToInt32(dgProductList.CurrentRow.Cells[0].Value);
+            var product = from p in dbispan.Product
+                          where p.ProductID == pid
+                          select p;            
+            tbProductName.Text = product.First().ProductName;
+            tbProduectAdFee.Text = product.First().AdFee.ToString();
+            tbProductDescription.Text = product.First().Description;
+            infocheck(product.First().RegionID,product.First().ShipperID,product.First().SmallTypeID);
+
+            
+            var img = from i in dbispan.ProductPic
+                      where i.ProductID == pid
+                      orderby i.PicID ascending
+                      select i.picture;
+            foreach(var p in img)
+            {
+                ProductIcon picon = new ProductIcon();
+                imgsaver.Add(p);
+                picon.img = p;
+                picon.Click += new EventHandler(picture_click);
+                this.flowLayoutPanel1.Controls.Add(picon);
+            }
+            
+
+            var pstyle = from p in dbispan.ProductDetail
+                         where p.ProductID == pid
+                         orderby p.ProductDetailID ascending
+                         select p;
+            dgProductDetail.DataSource = pstyle.ToList();
         }
 
         //選取照片
@@ -117,6 +177,7 @@ namespace WindowsFormsApp1
             if (_isnew)
             {
                 idcheck();
+                //新增Product資料
                 Product p = new Product
                 {
                     ProductName = tbProductName.Text,
@@ -129,6 +190,7 @@ namespace WindowsFormsApp1
                 };
                 dbispan.Product.Add(p);
                 dbispan.SaveChanges();
+                //新增Product資料照片進ProductPic
                 var pid = from i in dbispan.Product
                           orderby p.ProductID descending
                           select p.ProductID;
@@ -137,19 +199,34 @@ namespace WindowsFormsApp1
                     ProductPic pp = new ProductPic
                     {
                         ProductID = pid.ToList()[0],
-                        picture = imgsaver[i]                        
+                        picture = imgsaver[i]
                     };
                     dbispan.ProductPic.Add(pp);
                 }
+                //新增規格
+                for(int i = 0; i < listpd.Count; i++)
+                {
+                    ProductDetail pd = new ProductDetail
+                    {
+                        ProductID = pid.ToList()[0],
+                        Style = listpd[i].style,
+                        Quantity = listpd[i].styleqty,
+                        UnitPrice = listpd[i].styleunitprice,
+                        Pic = listpd[i].stylepic
+                    };
+                    dbispan.ProductDetail.Add(pd);
+                }
                 dbispan.SaveChanges();
             }
+            MessageBox.Show("新增成功");
+            restart();
         }
         private void idcheck()
         {
-            if (cbProductRegion.Text == "" || cbProductShipper.Text == "" || cbProductType.Text == "") 
+            if (cbProductRegion.Text == "" || cbProductShipper.Text == "" || cbProductType.Text == "" ||tbProductName.Text==""||tbProductDescription.Text==""||tbProduectAdFee.Text=="")
             {
                 MessageBox.Show("不可有欄位為空！");
-                return; 
+                return;
             }
             var typeid = from t in dbispan.SmallType
                          where t.SmallTypeName == cbProductType.Text
@@ -163,6 +240,21 @@ namespace WindowsFormsApp1
             _typeid = typeid.ToList()[0];
             _regionid = regionid.ToList()[0];
             _shipperid = shipperid.ToList()[0];
+        }
+        private void infocheck(int i,int j,int k)
+        {
+            var regions = from r in dbispan.RegionList
+                          where r.RegionID ==i
+                          select r.Region;
+            var shipper = from s in dbispan.Shipper
+                          where s.ShipperID ==j
+                          select s.ShipperName;
+            var types = from t in dbispan.SmallType
+                        where t.SmallTypeID == k
+                        select t.SmallTypeName;            
+            cbProductRegion.Text = regions.First();
+            cbProductShipper.Text = shipper.First();
+            cbProductType.Text = types.First();
         }
     }
 }

@@ -120,6 +120,7 @@ namespace WindowsFormsApp1
             this.dgProductList.RowTemplate.Height = 24;
             this.dgProductList.Size = new System.Drawing.Size(322, 752);
             this.dgProductList.TabIndex = 0;
+            this.dgProductList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProductList_CellClick);
             // 
             // button7
             // 
@@ -392,6 +393,7 @@ namespace WindowsFormsApp1
             this.Controls.Add(this.splitContainer1);
             this.Name = "Sells";
             this.Text = "Sells";
+            this.Load += new System.EventHandler(this.Sells_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();

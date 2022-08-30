@@ -19,8 +19,8 @@ namespace MajorHW
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Application.Run(new Login());
-            //Application.Run(new MainPage());
-            Application.Run(new Sells());
+            Application.Run(new MainPage());
+            //Application.Run(new Sells());
             //Application.Run(new BuildData());
         }
     }
