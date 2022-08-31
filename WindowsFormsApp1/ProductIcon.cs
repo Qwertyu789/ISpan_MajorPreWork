@@ -40,11 +40,9 @@ namespace WindowsFormsApp1
                 }
             }
         }
-
         private void ctl_Click(object sender, EventArgs e)
         {
             this.InvokeOnClick(this, EventArgs.Empty);
         }
-
     }
 }

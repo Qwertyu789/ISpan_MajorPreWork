@@ -31,10 +31,10 @@ namespace WindowsFormsApp1
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgProductList = new System.Windows.Forms.DataGridView();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btnDelProductDetail = new System.Windows.Forms.Button();
             this.cbProductRegion = new System.Windows.Forms.ComboBox();
             this.cbProductType = new System.Windows.Forms.ComboBox();
-            this.btnDelProductDetail = new System.Windows.Forms.Button();
+            this.btnEditProductDetail = new System.Windows.Forms.Button();
             this.btnAddProductDetail = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -80,10 +80,10 @@ namespace WindowsFormsApp1
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.splitContainer1.Panel2.Controls.Add(this.button7);
+            this.splitContainer1.Panel2.Controls.Add(this.btnDelProductDetail);
             this.splitContainer1.Panel2.Controls.Add(this.cbProductRegion);
             this.splitContainer1.Panel2.Controls.Add(this.cbProductType);
-            this.splitContainer1.Panel2.Controls.Add(this.btnDelProductDetail);
+            this.splitContainer1.Panel2.Controls.Add(this.btnEditProductDetail);
             this.splitContainer1.Panel2.Controls.Add(this.btnAddProductDetail);
             this.splitContainer1.Panel2.Controls.Add(this.button5);
             this.splitContainer1.Panel2.Controls.Add(this.button4);
@@ -122,14 +122,14 @@ namespace WindowsFormsApp1
             this.dgProductList.TabIndex = 0;
             this.dgProductList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProductList_CellClick);
             // 
-            // button7
+            // btnDelProductDetail
             // 
-            this.button7.Location = new System.Drawing.Point(271, 294);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(67, 34);
-            this.button7.TabIndex = 31;
-            this.button7.Text = "刪除規格";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnDelProductDetail.Location = new System.Drawing.Point(271, 294);
+            this.btnDelProductDetail.Name = "btnDelProductDetail";
+            this.btnDelProductDetail.Size = new System.Drawing.Size(67, 34);
+            this.btnDelProductDetail.TabIndex = 31;
+            this.btnDelProductDetail.Text = "刪除規格";
+            this.btnDelProductDetail.UseVisualStyleBackColor = true;
             // 
             // cbProductRegion
             // 
@@ -149,14 +149,15 @@ namespace WindowsFormsApp1
             this.cbProductType.Size = new System.Drawing.Size(157, 29);
             this.cbProductType.TabIndex = 29;
             // 
-            // btnDelProductDetail
+            // btnEditProductDetail
             // 
-            this.btnDelProductDetail.Location = new System.Drawing.Point(198, 293);
-            this.btnDelProductDetail.Name = "btnDelProductDetail";
-            this.btnDelProductDetail.Size = new System.Drawing.Size(67, 34);
-            this.btnDelProductDetail.TabIndex = 28;
-            this.btnDelProductDetail.Text = "規格更新";
-            this.btnDelProductDetail.UseVisualStyleBackColor = true;
+            this.btnEditProductDetail.Location = new System.Drawing.Point(198, 293);
+            this.btnEditProductDetail.Name = "btnEditProductDetail";
+            this.btnEditProductDetail.Size = new System.Drawing.Size(67, 34);
+            this.btnEditProductDetail.TabIndex = 28;
+            this.btnEditProductDetail.Text = "規格更新";
+            this.btnEditProductDetail.UseVisualStyleBackColor = true;
+            this.btnEditProductDetail.Click += new System.EventHandler(this.btnEditProductDetail_Click);
             // 
             // btnAddProductDetail
             // 
@@ -433,9 +434,9 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button btnDelProductDetail;
+        private System.Windows.Forms.Button btnEditProductDetail;
         private System.Windows.Forms.Button btnAddProductDetail;
         private System.Windows.Forms.ComboBox cbProductType;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btnDelProductDetail;
     }
 }

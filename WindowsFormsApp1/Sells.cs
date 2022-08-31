@@ -61,12 +61,12 @@ namespace WindowsFormsApp1
         private void reset()
         {
             //顯示用區域清空
-            dgProductList.DataSource = null;
+            dgProductList.DataSource = null;            
             dgProductDetail.DataSource = null;
             flowLayoutPanel1.Controls.Clear();
             //清空temp用list
             imgsaver.Clear();
-            listpd.Count();
+            listpd.Clear();
             //填入內容清空
             cbProductType.Items.Clear();
             cbProductShipper.Items.Clear();
@@ -75,7 +75,8 @@ namespace WindowsFormsApp1
             tbProduectAdFee.Text = "";
             tbProductDescription.Text = "";
 
-
+            btnEditProductDetail.Enabled = false;
+            btnDelProductDetail.Enabled = false;
             dgProductList.DataSource = dbispan.Product.ToList();
             loadingdata();
         }
@@ -113,14 +114,17 @@ namespace WindowsFormsApp1
             dgProductDetail.DataSource = null;
             dgProductDetail.DataSource = listpd;
         }
-
+        //頁面初次進入時預載
         private void Sells_Load(object sender, EventArgs e)
         {
             restart();
         }
-
+        //讀取商品列表
         private void dgProductList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            reset();
+            btnEditProductDetail.Enabled = true;
+            btnDelProductDetail.Enabled = true ;
             _isnew = false;
             int pid = Convert.ToInt32(dgProductList.CurrentRow.Cells[0].Value);
             var product = from p in dbispan.Product
@@ -131,7 +135,7 @@ namespace WindowsFormsApp1
             tbProductDescription.Text = product.First().Description;
             infocheck(product.First().RegionID,product.First().ShipperID,product.First().SmallTypeID);
 
-            
+            //照片區處理
             var img = from i in dbispan.ProductPic
                       where i.ProductID == pid
                       orderby i.PicID ascending
@@ -145,12 +149,24 @@ namespace WindowsFormsApp1
                 this.flowLayoutPanel1.Controls.Add(picon);
             }
             
-
+            //商品規格區處理
             var pstyle = from p in dbispan.ProductDetail
                          where p.ProductID == pid
                          orderby p.ProductDetailID ascending
-                         select p;
-            dgProductDetail.DataSource = pstyle.ToList();
+                         select new {ID=p.ProductDetailID,Style = p.Style,Qty=p.Quantity,Pic =p.Pic,UnitPrice=p.UnitPrice };
+            foreach(var psd in pstyle.ToList())
+            {
+                ProductDetailStyleInfo pd = new ProductDetailStyleInfo
+                {
+                    styleID = psd.ID,
+                    styleName = psd.Style,
+                    styleQty = psd.Qty,
+                    stylePic = psd.Pic,
+                    styleUnitprice = psd.UnitPrice
+                };                
+                listpd.Add(pd);
+            }
+            dgProductDetail.DataSource = listpd;
         }
 
         //選取照片
@@ -161,6 +177,20 @@ namespace WindowsFormsApp1
             _selectedUC = (ProductIcon)sender;
             _selectedUC.BorderStyle = BorderStyle.FixedSingle;
         }
+        //修改規格
+        private void btnEditProductDetail_Click(object sender, EventArgs e)
+        {
+            int pdid = Convert.ToInt32(dgProductDetail.CurrentRow.Index);
+            ProductDetails pd = new ProductDetails();
+            pd.loaddata = true;
+            pd.pdid = pdid;
+            pd.pds = listpd[pdid];
+            pd.Owner = this;
+            pd.ShowDialog();
+            dgProductDetail.DataSource = null;
+            dgProductDetail.DataSource = listpd;
+        }
+
         //刪除照片
         private void button2_Click(object sender, EventArgs e)
         {
@@ -209,10 +239,10 @@ namespace WindowsFormsApp1
                     ProductDetail pd = new ProductDetail
                     {
                         ProductID = pid.ToList()[0],
-                        Style = listpd[i].style,
-                        Quantity = listpd[i].styleqty,
-                        UnitPrice = listpd[i].styleunitprice,
-                        Pic = listpd[i].stylepic
+                        Style = listpd[i].styleName,
+                        Quantity = listpd[i].styleQty,
+                        UnitPrice = listpd[i].styleUnitprice,
+                        Pic = listpd[i].stylePic
                     };
                     dbispan.ProductDetail.Add(pd);
                 }

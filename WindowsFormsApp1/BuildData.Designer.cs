@@ -139,6 +139,7 @@ namespace MajorHW
             this.Controls.Add(this.pb1);
             this.Controls.Add(this.btnM1);
             this.Name = "BuildData";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BuildData";
             ((System.ComponentModel.ISupportInitialize)(this.pb1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

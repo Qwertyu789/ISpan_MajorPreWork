@@ -14,16 +14,36 @@ namespace MajorHW
     public partial class BuildData : Form
     {
         iSpanProjectEntities5 newdb = new iSpanProjectEntities5();
+        byte[] bytes;
         public BuildData()
         {
             InitializeComponent();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
+            RegionList rg0 = new RegionList
+            {
+                RegionID = 0,
+                Region = "海外"
+            };
+            RegionList rg1 = new RegionList
+            {
+                RegionID = 1,
+                Region = "台北市"
+            };
+            RegionList rg2 = new RegionList
+            {
+                RegionID = 2,
+                Region = "新北市"
+            };
+            newdb.RegionList.Add(rg0);
+            newdb.RegionList.Add(rg1);
+            newdb.RegionList.Add(rg2);
+            newdb.SaveChanges();
+
             System.IO.MemoryStream ms = new System.IO.MemoryStream();
             this.pb1.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-            byte[] bytes = ms.GetBuffer();
+            bytes = ms.GetBuffer();
 
             MemberAccount ADDmemprofile = new MemberAccount
             {
@@ -98,29 +118,9 @@ namespace MajorHW
 
         private void btnR_Click(object sender, EventArgs e)
         {
-            RegionList rg0 = new RegionList
-            {
-                RegionID = 0,
-                Region = "海外"
-            };
-            RegionList rg1 = new RegionList
-            {
-                RegionID = 1,
-                Region = "台北市"
-            };
-            RegionList rg2 = new RegionList
-            {
-                RegionID = 2,
-                Region = "新北市"
-            };
-            newdb.RegionList.Add(rg0);
-            newdb.RegionList.Add(rg1);
-            newdb.RegionList.Add(rg2);
-            newdb.SaveChanges();
-        }
-
-        private void btnProductprev_Click(object sender, EventArgs e)
-        {
+            var qm = from m in newdb.MemberAccount
+                     where m.MemberAcc == "aaaa"
+                     select m.MemberID;
             Shipper sp0 = new Shipper
             {
                 ShipperID = 1,
@@ -136,12 +136,46 @@ namespace MajorHW
             {
                 SmallTypeID = 1,
                 SmallTypeName = "大佬的狗",
-                BigTypeID=1                
+                BigTypeID = 1
             };
             newdb.Shipper.Add(sp0);
             newdb.BigType.Add(bg0);
             newdb.SmallType.Add(sm0);
             newdb.SaveChanges();
+            Product p = new Product
+            {
+                ProductName = "大佬組長的肉棒",
+                SmallTypeID = 1,
+                MemberID = Convert.ToInt32(qm),
+                RegionID = 1,
+                AdFee = 0,
+                Description = "大老肉棒又香又好吃",
+                ShipperID = 1
+            };
+            var pid = newdb.Product.Select(i=>i.ProductID).ToList().FirstOrDefault();
+            newdb.Product.Add(p);
+            newdb.SaveChanges();
+            ProductPic pp = new ProductPic
+            {
+                ProductID = pid,
+                picture = bytes
+            };
+            ProductDetail pd = new ProductDetail
+            {
+                ProductID = pid,
+                Style = "日本大肉棒",
+                Quantity = 114514,
+                UnitPrice = 888,
+                Pic = bytes
+            };
+            newdb.ProductPic.Add(pp);
+            newdb.ProductDetail.Add(pd);
+            newdb.SaveChanges();
+        }
+
+        private void btnProductprev_Click(object sender, EventArgs e)
+        {
+            
         }
         private void button1_Click_1(object sender, EventArgs e)
         {

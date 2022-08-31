@@ -147,6 +147,7 @@ namespace WindowsFormsApp1
             this.Controls.Add(this.lblStyle);
             this.Name = "ProductDetails";
             this.Text = "ProductDetails";
+            this.Load += new System.EventHandler(this.ProductDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

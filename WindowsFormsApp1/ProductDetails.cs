@@ -15,42 +15,51 @@ namespace WindowsFormsApp1
         public ProductDetails()
         {
             InitializeComponent();
-            load();
+            
         }
-        ProductDetailStyleInfo pds = new ProductDetailStyleInfo();
-
+        public ProductDetailStyleInfo pds = new ProductDetailStyleInfo();
+        public string _name = "";
+        public int _qty;
+        public decimal _unitprice;
+        public byte[] _pic;
+        bool _loaddata = false;
+        public bool loaddata { get { return _loaddata; } set { _loaddata = value; } }
+        public int pdid { get; set; }
+        bool pass = false;
+        //回傳
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if(!string.IsNullOrEmpty(tbStyle.Text)) pds.style = tbStyle.Text;
-            else { MessageBox.Show("請輸入規格名稱"); return; };
-            bool isQty = int.TryParse(tbQty.Text,out _qty);
-            if (isQty&&_qty>=0) pds.styleqty = _qty;
-            else { MessageBox.Show("請輸入大於等於0的數字"); return; };
-            bool isPrice = decimal.TryParse(tbUnitPrice.Text, out _unitprice);
-            if (isPrice) pds.styleunitprice = _unitprice;
-            else { MessageBox.Show("請輸入正確價格格式"); return; };
-            if (_pic != null) pds.stylepic = _pic;
-            else { MessageBox.Show("請上傳商品照片"); return; };     
-            //Form1 lForm1 = (Form1)this.Owner
-            Sells fForm = (Sells)this.Owner;
-            fForm.listpd.Add(pds);
-            MessageBox.Show("新增成功", "結果", MessageBoxButtons.OK);
-            this.Close();
+            
+            if (_loaddata)
+            {
+                check_fill();
+                if (!pass) return;
+                Sells fForm = (Sells)this.Owner;
+                fForm.listpd[pdid] = pds;
+                MessageBox.Show("修改成功", "結果", MessageBoxButtons.OK);
+                this.Close();
+
+            }
+            else 
+            {
+                check_fill();
+                if (!pass) return;
+                Sells fForm = (Sells)this.Owner;
+                fForm.listpd.Add(pds);
+                MessageBox.Show("新增成功", "結果", MessageBoxButtons.OK);
+                this.Close();
+            }
         }
-        string _style = "";
-        int _qty;
-        decimal _unitprice;
-        byte[] _pic;
-        bool loaddata = false;
         private void load()
         {
-            if (loaddata)
+            if (_loaddata)
             {
-                tbStyle.Text = _style;
-                tbQty.Text = _qty.ToString();
-                tbUnitPrice.Text = _unitprice.ToString();
-                System.IO.MemoryStream ms = new System.IO.MemoryStream(_pic);
+                tbStyle.Text = pds.styleName;
+                tbQty.Text = pds.styleQty.ToString();
+                tbUnitPrice.Text = pds.styleUnitprice.ToString();
+                System.IO.MemoryStream ms = new System.IO.MemoryStream(pds.stylePic);
                 this.pictureBox1.Image = Image.FromStream(ms);
+                _pic = pds.stylePic;
             }
         }
 
@@ -69,7 +78,25 @@ namespace WindowsFormsApp1
                 _pic = ms.GetBuffer();
             }
             else return;
+        }
+        private void check_fill()
+        {
+            if (!string.IsNullOrWhiteSpace(tbStyle.Text)) pds.styleName = tbStyle.Text;
+            else { MessageBox.Show("請輸入規格名稱"); return; };
+            bool isQty = int.TryParse(tbQty.Text, out _qty);
+            if (isQty && _qty >= 0) pds.styleQty = _qty;
+            else { MessageBox.Show("請輸入大於等於0的數字"); return; };
+            bool isPrice = decimal.TryParse(tbUnitPrice.Text, out _unitprice);
+            if (isPrice) pds.styleUnitprice = _unitprice;
+            else { MessageBox.Show("請輸入正確價格格式"); return; };
+            if (_pic != null) pds.stylePic = _pic;
+            else { MessageBox.Show("請上傳商品照片"); return; };
+            pass = true;
+        }
 
+        private void ProductDetails_Load(object sender, EventArgs e)
+        {
+            load();
         }
     }
 }
