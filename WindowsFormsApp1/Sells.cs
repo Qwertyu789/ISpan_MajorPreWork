@@ -15,10 +15,10 @@ namespace WindowsFormsApp1
         private List<byte[]> imgsaver = new List<byte[]>();
         private Image tempimg;
         public string _ac { get; set; }
-        private int _memid, _typeid, _regionid, _shipperid, _product;
+        private int _memid, _typeid, _regionid, _shipperid;
         private ProductIcon _selectedUC;
         bool _isnew = true;
-        private iSpanProjectEntities5 dbispan = new iSpanProjectEntities5();
+        private iSpanProjectEntities dbispan = new iSpanProjectEntities();
         public List<ProductDetailStyleInfo> listpd = new List<ProductDetailStyleInfo>();
 
         public Sells()
@@ -27,7 +27,7 @@ namespace WindowsFormsApp1
         }
         //基本載入 combobox
         private void loadingdata()
-        {            
+        {
             var regions = from r in dbispan.RegionList
                           orderby r.RegionID ascending
                           select r.Region;
@@ -61,7 +61,7 @@ namespace WindowsFormsApp1
         private void reset()
         {
             //顯示用區域清空
-            dgProductList.DataSource = null;            
+            dgProductList.DataSource = null;
             dgProductDetail.DataSource = null;
             flowLayoutPanel1.Controls.Clear();
             //清空temp用list
@@ -124,23 +124,23 @@ namespace WindowsFormsApp1
         {
             reset();
             btnEditProductDetail.Enabled = true;
-            btnDelProductDetail.Enabled = true ;
+            btnDelProductDetail.Enabled = true;
             _isnew = false;
             int pid = Convert.ToInt32(dgProductList.CurrentRow.Cells[0].Value);
             var product = from p in dbispan.Product
                           where p.ProductID == pid
-                          select p;            
+                          select p;
             tbProductName.Text = product.First().ProductName;
             tbProduectAdFee.Text = product.First().AdFee.ToString();
             tbProductDescription.Text = product.First().Description;
-            infocheck(product.First().RegionID,product.First().ShipperID,product.First().SmallTypeID);
+            infocheck(product.First().RegionID, product.First().ShipperID, product.First().SmallTypeID);
 
             //照片區處理
             var img = from i in dbispan.ProductPic
                       where i.ProductID == pid
                       orderby i.PicID ascending
                       select i.picture;
-            foreach(var p in img)
+            foreach (var p in img)
             {
                 ProductIcon picon = new ProductIcon();
                 imgsaver.Add(p);
@@ -148,13 +148,13 @@ namespace WindowsFormsApp1
                 picon.Click += new EventHandler(picture_click);
                 this.flowLayoutPanel1.Controls.Add(picon);
             }
-            
+
             //商品規格區處理
             var pstyle = from p in dbispan.ProductDetail
                          where p.ProductID == pid
                          orderby p.ProductDetailID ascending
-                         select new {ID=p.ProductDetailID,Style = p.Style,Qty=p.Quantity,Pic =p.Pic,UnitPrice=p.UnitPrice };
-            foreach(var psd in pstyle.ToList())
+                         select new { ID = p.ProductDetailID, Style = p.Style, Qty = p.Quantity, Pic = p.Pic, UnitPrice = p.UnitPrice };
+            foreach (var psd in pstyle.ToList())
             {
                 ProductDetailStyleInfo pd = new ProductDetailStyleInfo
                 {
@@ -163,7 +163,7 @@ namespace WindowsFormsApp1
                     styleQty = psd.Qty,
                     stylePic = psd.Pic,
                     styleUnitprice = psd.UnitPrice
-                };                
+                };
                 listpd.Add(pd);
             }
             dgProductDetail.DataSource = listpd;
@@ -234,7 +234,7 @@ namespace WindowsFormsApp1
                     dbispan.ProductPic.Add(pp);
                 }
                 //新增規格
-                for(int i = 0; i < listpd.Count; i++)
+                for (int i = 0; i < listpd.Count; i++)
                 {
                     ProductDetail pd = new ProductDetail
                     {
@@ -253,7 +253,7 @@ namespace WindowsFormsApp1
         }
         private void idcheck()
         {
-            if (cbProductRegion.Text == "" || cbProductShipper.Text == "" || cbProductType.Text == "" ||tbProductName.Text==""||tbProductDescription.Text==""||tbProduectAdFee.Text=="")
+            if (cbProductRegion.Text == "" || cbProductShipper.Text == "" || cbProductType.Text == "" || tbProductName.Text == "" || tbProductDescription.Text == "" || tbProduectAdFee.Text == "")
             {
                 MessageBox.Show("不可有欄位為空！");
                 return;
@@ -271,17 +271,17 @@ namespace WindowsFormsApp1
             _regionid = regionid.ToList()[0];
             _shipperid = shipperid.ToList()[0];
         }
-        private void infocheck(int i,int j,int k)
+        private void infocheck(int i, int j, int k)
         {
             var regions = from r in dbispan.RegionList
-                          where r.RegionID ==i
+                          where r.RegionID == i
                           select r.Region;
             var shipper = from s in dbispan.Shipper
-                          where s.ShipperID ==j
+                          where s.ShipperID == j
                           select s.ShipperName;
             var types = from t in dbispan.SmallType
                         where t.SmallTypeID == k
-                        select t.SmallTypeName;            
+                        select t.SmallTypeName;
             cbProductRegion.Text = regions.First();
             cbProductShipper.Text = shipper.First();
             cbProductType.Text = types.First();

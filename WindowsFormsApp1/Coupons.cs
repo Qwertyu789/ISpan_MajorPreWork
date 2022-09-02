@@ -18,20 +18,18 @@ namespace WindowsFormsApp1
         public Coupons()
         {
             this.Orders = new HashSet<Orders>();
-            this.Wallet = new HashSet<Wallet>();
+            this.OfficialCoupons = new HashSet<OfficialCoupons>();
         }
     
         public int CouponID { get; set; }
         public string CouponName { get; set; }
-        public int WalletID { get; set; }
         public System.DateTime StartDate { get; set; }
         public System.DateTime ExpiredDate { get; set; }
         public float Discount { get; set; }
-        public bool ExpireN_A { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Wallet> Wallet { get; set; }
+        public virtual ICollection<OfficialCoupons> OfficialCoupons { get; set; }
     }
 }

@@ -13,10 +13,10 @@ namespace WindowsFormsApp1
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class iSpanProjectEntities5 : DbContext
+    public partial class iSpanProjectEntities : DbContext
     {
-        public iSpanProjectEntities5()
-            : base("name=iSpanProjectEntities5")
+        public iSpanProjectEntities()
+            : base("name=iSpanProjectEntities")
         {
         }
     
@@ -32,13 +32,17 @@ namespace WindowsFormsApp1
         public virtual DbSet<BigType> BigType { get; set; }
         public virtual DbSet<Comment> Comment { get; set; }
         public virtual DbSet<CommentPic> CommentPic { get; set; }
+        public virtual DbSet<CountryList> CountryList { get; set; }
         public virtual DbSet<Coupons> Coupons { get; set; }
         public virtual DbSet<FAQ> FAQ { get; set; }
+        public virtual DbSet<FAQType> FAQType { get; set; }
         public virtual DbSet<Follows> Follows { get; set; }
         public virtual DbSet<Likes> Likes { get; set; }
         public virtual DbSet<MemberAccount> MemberAccount { get; set; }
+        public virtual DbSet<OfficialCoupons> OfficialCoupons { get; set; }
         public virtual DbSet<OrderDetails> OrderDetails { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<OrderStatuses> OrderStatuses { get; set; }
         public virtual DbSet<Payment> Payment { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<ProductDetail> ProductDetail { get; set; }
@@ -47,7 +51,5 @@ namespace WindowsFormsApp1
         public virtual DbSet<Shipper> Shipper { get; set; }
         public virtual DbSet<ShippingStatuses> ShippingStatuses { get; set; }
         public virtual DbSet<SmallType> SmallType { get; set; }
-        public virtual DbSet<Statuses> Statuses { get; set; }
-        public virtual DbSet<Wallet> Wallet { get; set; }
     }
 }

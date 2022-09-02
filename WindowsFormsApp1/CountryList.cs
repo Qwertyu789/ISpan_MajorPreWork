@@ -12,18 +12,18 @@ namespace WindowsFormsApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class Statuses
+    public partial class CountryList
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Statuses()
+        public CountryList()
         {
-            this.Orders = new HashSet<Orders>();
+            this.RegionList = new HashSet<RegionList>();
         }
     
-        public int StatusID { get; set; }
-        public string StatusName { get; set; }
+        public int CountryID { get; set; }
+        public string CountryName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<RegionList> RegionList { get; set; }
     }
 }

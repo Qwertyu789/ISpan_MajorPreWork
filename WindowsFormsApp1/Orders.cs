@@ -37,6 +37,6 @@ namespace WindowsFormsApp1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetails> OrderDetails { get; set; }
         public virtual Product Product { get; set; }
-        public virtual Statuses Statuses { get; set; }
+        public virtual OrderStatuses OrderStatuses { get; set; }
     }
 }

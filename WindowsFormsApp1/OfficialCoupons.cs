@@ -12,13 +12,14 @@ namespace WindowsFormsApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class FAQ
+    public partial class OfficialCoupons
     {
-        public int FAQID { get; set; }
-        public string Answer { get; set; }
-        public string Question { get; set; }
-        public int FAQTypeID { get; set; }
+        public int MemberID { get; set; }
+        public int OfficialCouponsID { get; set; }
+        public int CouponID { get; set; }
+        public bool ExpireN_A { get; set; }
     
-        public virtual FAQType FAQType { get; set; }
+        public virtual Coupons Coupons { get; set; }
+        public virtual MemberAccount MemberAccount { get; set; }
     }
 }

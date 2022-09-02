@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="iSpanProjectModelStoreContainer" CdmEntityContainer="iSpanProjectEntities5">
-    <EntitySetMapping Name="AD">
+  <EntityContainerMapping StorageEntityContainer="iSpanProjectModelStoreContainer" CdmEntityContainer="iSpanProjectEntities">
+    <EntitySetMapping Name="ADs">
       <EntityTypeMapping TypeName="iSpanProjectModel.AD">
         <MappingFragment StoreEntitySet="AD">
           <ScalarProperty Name="AdID" ColumnName="AdID" />
@@ -10,7 +10,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ArguePic">
+    <EntitySetMapping Name="ArguePics">
       <EntityTypeMapping TypeName="iSpanProjectModel.ArguePic">
         <MappingFragment StoreEntitySet="ArguePic">
           <ScalarProperty Name="ArguePicID" ColumnName="ArguePicID" />
@@ -19,7 +19,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Argument">
+    <EntitySetMapping Name="Arguments">
       <EntityTypeMapping TypeName="iSpanProjectModel.Argument">
         <MappingFragment StoreEntitySet="Argument">
           <ScalarProperty Name="OrderID" ColumnName="OrderID" />
@@ -30,7 +30,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ArgumentType">
+    <EntitySetMapping Name="ArgumentTypes">
       <EntityTypeMapping TypeName="iSpanProjectModel.ArgumentType">
         <MappingFragment StoreEntitySet="ArgumentType">
           <ScalarProperty Name="ArgumentTypeID" ColumnName="ArgumentTypeID" />
@@ -38,7 +38,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="BigType">
+    <EntitySetMapping Name="BigTypes">
       <EntityTypeMapping TypeName="iSpanProjectModel.BigType">
         <MappingFragment StoreEntitySet="BigType">
           <ScalarProperty Name="BigTypeID" ColumnName="BigTypeID" />
@@ -46,7 +46,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Comment">
+    <EntitySetMapping Name="Comments">
       <EntityTypeMapping TypeName="iSpanProjectModel.Comment">
         <MappingFragment StoreEntitySet="Comment">
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
@@ -57,7 +57,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CommentPic">
+    <EntitySetMapping Name="CommentPics">
       <EntityTypeMapping TypeName="iSpanProjectModel.CommentPic">
         <MappingFragment StoreEntitySet="CommentPic">
           <ScalarProperty Name="CommentPicID" ColumnName="CommentPicID" />
@@ -66,18 +66,45 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="FAQ">
+    <EntitySetMapping Name="CountryLists">
+      <EntityTypeMapping TypeName="iSpanProjectModel.CountryList">
+        <MappingFragment StoreEntitySet="CountryList">
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Coupons">
+      <EntityTypeMapping TypeName="iSpanProjectModel.Coupon">
+        <MappingFragment StoreEntitySet="Coupons">
+          <ScalarProperty Name="CouponID" ColumnName="CouponID" />
+          <ScalarProperty Name="CouponName" ColumnName="CouponName" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FAQs">
       <EntityTypeMapping TypeName="iSpanProjectModel.FAQ">
         <MappingFragment StoreEntitySet="FAQ">
-          <ScalarProperty Name="FAQTypeID" ColumnName="FAQTypeID" />
           <ScalarProperty Name="FAQID" ColumnName="FAQID" />
           <ScalarProperty Name="Answer" ColumnName="Answer" />
           <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="FAQTypeID" ColumnName="FAQTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FAQTypes">
+      <EntityTypeMapping TypeName="iSpanProjectModel.FAQType">
+        <MappingFragment StoreEntitySet="FAQType">
+          <ScalarProperty Name="FAQTypeID" ColumnName="FAQTypeID" />
+          <ScalarProperty Name="FAQTypeName" ColumnName="FAQTypeName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Follows">
-      <EntityTypeMapping TypeName="iSpanProjectModel.Follows">
+      <EntityTypeMapping TypeName="iSpanProjectModel.Follow">
         <MappingFragment StoreEntitySet="Follows">
           <ScalarProperty Name="MemberID" ColumnName="MemberID" />
           <ScalarProperty Name="FollowID" ColumnName="FollowID" />
@@ -86,7 +113,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Likes">
-      <EntityTypeMapping TypeName="iSpanProjectModel.Likes">
+      <EntityTypeMapping TypeName="iSpanProjectModel.Like">
         <MappingFragment StoreEntitySet="Likes">
           <ScalarProperty Name="MemberID" ColumnName="MemberID" />
           <ScalarProperty Name="LikeID" ColumnName="LikeID" />
@@ -94,7 +121,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MemberAccount">
+    <EntitySetMapping Name="MemberAccounts">
       <EntityTypeMapping TypeName="iSpanProjectModel.MemberAccount">
         <MappingFragment StoreEntitySet="MemberAccount">
           <ScalarProperty Name="MemberID" ColumnName="MemberID" />
@@ -114,8 +141,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="OfficialCoupons">
+      <EntityTypeMapping TypeName="iSpanProjectModel.OfficialCoupon">
+        <MappingFragment StoreEntitySet="OfficialCoupons">
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="OfficialCouponsID" ColumnName="OfficialCouponsID" />
+          <ScalarProperty Name="CouponID" ColumnName="CouponID" />
+          <ScalarProperty Name="ExpireN_A" ColumnName="ExpireN_A" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="OrderDetails">
-      <EntityTypeMapping TypeName="iSpanProjectModel.OrderDetails">
+      <EntityTypeMapping TypeName="iSpanProjectModel.OrderDetail">
         <MappingFragment StoreEntitySet="OrderDetails">
           <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
           <ScalarProperty Name="OrderID" ColumnName="OrderID" />
@@ -130,7 +167,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Orders">
-      <EntityTypeMapping TypeName="iSpanProjectModel.Orders">
+      <EntityTypeMapping TypeName="iSpanProjectModel.Order">
         <MappingFragment StoreEntitySet="Orders">
           <ScalarProperty Name="OrderID" ColumnName="OrderID" />
           <ScalarProperty Name="MemberID" ColumnName="MemberID" />
@@ -143,7 +180,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Payment">
+    <EntitySetMapping Name="OrderStatuses">
+      <EntityTypeMapping TypeName="iSpanProjectModel.OrderStatus">
+        <MappingFragment StoreEntitySet="OrderStatuses">
+          <ScalarProperty Name="OrderStatusID" ColumnName="OrderStatusID" />
+          <ScalarProperty Name="OrderStatusName" ColumnName="OrderStatusName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payments">
       <EntityTypeMapping TypeName="iSpanProjectModel.Payment">
         <MappingFragment StoreEntitySet="Payment">
           <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
@@ -152,7 +197,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Product">
+    <EntitySetMapping Name="Products">
       <EntityTypeMapping TypeName="iSpanProjectModel.Product">
         <MappingFragment StoreEntitySet="Product">
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
@@ -166,7 +211,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ProductDetail">
+    <EntitySetMapping Name="ProductDetails">
       <EntityTypeMapping TypeName="iSpanProjectModel.ProductDetail">
         <MappingFragment StoreEntitySet="ProductDetail">
           <ScalarProperty Name="ProductDetailID" ColumnName="ProductDetailID" />
@@ -178,7 +223,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ProductPic">
+    <EntitySetMapping Name="ProductPics">
       <EntityTypeMapping TypeName="iSpanProjectModel.ProductPic">
         <MappingFragment StoreEntitySet="ProductPic">
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
@@ -187,16 +232,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="RegionList">
+    <EntitySetMapping Name="RegionLists">
       <EntityTypeMapping TypeName="iSpanProjectModel.RegionList">
         <MappingFragment StoreEntitySet="RegionList">
-          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
-          <ScalarProperty Name="RegionName" ColumnName="RegionName" />
           <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+          <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Shipper">
+    <EntitySetMapping Name="Shippers">
       <EntityTypeMapping TypeName="iSpanProjectModel.Shipper">
         <MappingFragment StoreEntitySet="Shipper">
           <ScalarProperty Name="ShipperID" ColumnName="ShipperID" />
@@ -206,75 +251,19 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ShippingStatuses">
-      <EntityTypeMapping TypeName="iSpanProjectModel.ShippingStatuses">
+      <EntityTypeMapping TypeName="iSpanProjectModel.ShippingStatus">
         <MappingFragment StoreEntitySet="ShippingStatuses">
           <ScalarProperty Name="ShippingStatusID" ColumnName="ShippingStatusID" />
           <ScalarProperty Name="ShipStatusName" ColumnName="ShipStatusName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SmallType">
+    <EntitySetMapping Name="SmallTypes">
       <EntityTypeMapping TypeName="iSpanProjectModel.SmallType">
         <MappingFragment StoreEntitySet="SmallType">
           <ScalarProperty Name="SmallTypeID" ColumnName="SmallTypeID" />
           <ScalarProperty Name="SmallTypeName" ColumnName="SmallTypeName" />
           <ScalarProperty Name="BigTypeID" ColumnName="BigTypeID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CountryList">
-      <EntityTypeMapping TypeName="iSpanProjectModel.CountryList">
-        <MappingFragment StoreEntitySet="CountryList">
-          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
-          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="FAQType">
-      <EntityTypeMapping TypeName="iSpanProjectModel.FAQType">
-        <MappingFragment StoreEntitySet="FAQType">
-          <ScalarProperty Name="FAQTypeName" ColumnName="FAQTypeName" />
-          <ScalarProperty Name="FAQTypeID" ColumnName="FAQTypeID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="OfficialCoupons">
-      <EntityTypeMapping TypeName="iSpanProjectModel.OfficialCoupons">
-        <MappingFragment StoreEntitySet="OfficialCoupons">
-          <ScalarProperty Name="ExpireN_A" ColumnName="ExpireN_A" />
-          <ScalarProperty Name="CouponID" ColumnName="CouponID" />
-          <ScalarProperty Name="OfficialCouponsID" ColumnName="OfficialCouponsID" />
-          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="OrderStatuses">
-      <EntityTypeMapping TypeName="iSpanProjectModel.OrderStatuses">
-        <MappingFragment StoreEntitySet="OrderStatuses">
-          <ScalarProperty Name="OrderStatusName" ColumnName="OrderStatusName" />
-          <ScalarProperty Name="OrderStatusID" ColumnName="OrderStatusID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Coupons">
-      <EntityTypeMapping TypeName="iSpanProjectModel.Coupons">
-        <MappingFragment StoreEntitySet="Coupons">
-          <ScalarProperty Name="Discount" ColumnName="Discount" />
-          <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="CouponName" ColumnName="CouponName" />
-          <ScalarProperty Name="CouponID" ColumnName="CouponID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="iSpanProjectModel.sysdiagrams">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="definition" ColumnName="definition" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="name" ColumnName="name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
