@@ -14,7 +14,7 @@ namespace MajorHW
     public partial class Login : Form
     {
         bool loginBlock = true;
-        iSpanProjectEntities5 dbispan = new iSpanProjectEntities5();
+        iSpanProjectEntities dbispan = new iSpanProjectEntities();
         public Login()
         {
             InitializeComponent();

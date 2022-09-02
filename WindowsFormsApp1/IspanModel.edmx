@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="iSpanProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="iSpanProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AD">
           <Key>
             <PropertyRef Name="AdID" />
           </Key>
-          <Property Name="AdID" Type="int" Nullable="false" />
+          <Property Name="AdID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AdName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AdFee" Type="money" Nullable="false" />
         </EntityType>
@@ -17,7 +17,7 @@
           <Key>
             <PropertyRef Name="ArguePicID" />
           </Key>
-          <Property Name="ArguePicID" Type="int" Nullable="false" />
+          <Property Name="ArguePicID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ArguementID" Type="int" Nullable="false" />
           <Property Name="ArguePic" Type="varbinary(max)" Nullable="false" />
         </EntityType>
@@ -26,8 +26,8 @@
             <PropertyRef Name="ArgumentID" />
           </Key>
           <Property Name="OrderID" Type="int" Nullable="false" />
-          <Property Name="ArgumentID" Type="int" Nullable="false" />
-          <Property Name="ChangeorReturn" Type="bit" />
+          <Property Name="ArgumentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChangeorReturn" Type="bit" Nullable="false" />
           <Property Name="Reason" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ArgumentTypeID" Type="int" Nullable="false" />
         </EntityType>
@@ -35,14 +35,14 @@
           <Key>
             <PropertyRef Name="ArgumentTypeID" />
           </Key>
-          <Property Name="ArgumentTypeID" Type="int" Nullable="false" />
-          <Property Name="ArgumentTypeName" Type="nvarchar" MaxLength="500" />
+          <Property Name="ArgumentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArgumentTypeName" Type="nvarchar" MaxLength="500" Nullable="false" />
         </EntityType>
         <EntityType Name="BigType">
           <Key>
             <PropertyRef Name="BigTypeID" />
           </Key>
-          <Property Name="BigTypeID" Type="int" Nullable="false" />
+          <Property Name="BigTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BigTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Comment">
@@ -53,7 +53,7 @@
           <Property Name="MemberID" Type="int" Nullable="false" />
           <Property Name="Comment" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="Star" Type="tinyint" Nullable="false" />
-          <Property Name="CommentID" Type="int" Nullable="false" />
+          <Property Name="CommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="CommentPic">
           <Key>
@@ -63,32 +63,45 @@
           <Property Name="CommentID" Type="int" Nullable="false" />
           <Property Name="CommentPic" Type="varbinary(max)" Nullable="false" />
         </EntityType>
+        <EntityType Name="CountryList">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Coupons">
           <Key>
             <PropertyRef Name="CouponID" />
           </Key>
-          <Property Name="CouponID" Type="int" Nullable="false" />
+          <Property Name="CouponID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CouponName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="WalletID" Type="int" Nullable="false" />
           <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="ExpiredDate" Type="date" Nullable="false" />
           <Property Name="Discount" Type="real" Nullable="false" />
-          <Property Name="ExpireN_A" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="FAQ">
           <Key>
             <PropertyRef Name="FAQID" />
           </Key>
-          <Property Name="FAQID" Type="int" Nullable="false" />
+          <Property Name="FAQID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Answer" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="Question" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="FAQTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FAQType">
+          <Key>
+            <PropertyRef Name="FAQTypeID" />
+          </Key>
+          <Property Name="FAQTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FAQTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Follows">
           <Key>
             <PropertyRef Name="FollowID" />
           </Key>
           <Property Name="MemberID" Type="int" Nullable="false" />
-          <Property Name="FollowID" Type="int" Nullable="false" />
+          <Property Name="FollowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FollowedMemID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Likes">
@@ -96,7 +109,7 @@
             <PropertyRef Name="LikeID" />
           </Key>
           <Property Name="MemberID" Type="int" Nullable="false" />
-          <Property Name="LikeID" Type="int" Nullable="false" />
+          <Property Name="LikeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="MemberAccount">
@@ -115,14 +128,23 @@
           <Property Name="NickName" Type="nvarchar" MaxLength="50" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Birthday" Type="date" Nullable="false" />
-          <Property Name="Bio" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Bio" Type="nvarchar(max)" />
           <Property Name="MemPic" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OfficialCoupons">
+          <Key>
+            <PropertyRef Name="OfficialCouponsID" />
+          </Key>
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="OfficialCouponsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CouponID" Type="int" Nullable="false" />
+          <Property Name="ExpireN_A" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderDetails">
           <Key>
             <PropertyRef Name="OrderDetailID" />
           </Key>
-          <Property Name="OrderDetailID" Type="int" Nullable="false" />
+          <Property Name="OrderDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderID" Type="int" Nullable="false" />
           <Property Name="ProductDetailID" Type="int" Nullable="false" />
           <Property Name="ShipperID" Type="int" Nullable="false" />
@@ -136,7 +158,7 @@
           <Key>
             <PropertyRef Name="OrderID" />
           </Key>
-          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MemberID" Type="int" Nullable="false" />
           <Property Name="OrderDatetime" Type="datetime" Nullable="false" />
           <Property Name="RecieveAdr" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -145,11 +167,18 @@
           <Property Name="CouponID" Type="int" Nullable="false" />
           <Property Name="StatusID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="OrderStatuses">
+          <Key>
+            <PropertyRef Name="OrderStatusID" />
+          </Key>
+          <Property Name="OrderStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderStatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Payment">
           <Key>
             <PropertyRef Name="PaymentID" />
           </Key>
-          <Property Name="PaymentID" Type="int" Nullable="false" />
+          <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PaymentName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Fee" Type="money" Nullable="false" />
         </EntityType>
@@ -189,14 +218,15 @@
           <Key>
             <PropertyRef Name="RegionID" />
           </Key>
-          <Property Name="RegionID" Type="int" Nullable="false" />
-          <Property Name="Region" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RegionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CountryID" Type="int" />
         </EntityType>
         <EntityType Name="Shipper">
           <Key>
             <PropertyRef Name="ShipperID" />
           </Key>
-          <Property Name="ShipperID" Type="int" Nullable="false" />
+          <Property Name="ShipperID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ShipperName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
@@ -204,31 +234,16 @@
           <Key>
             <PropertyRef Name="ShippingStatusID" />
           </Key>
-          <Property Name="ShippingStatusID" Type="int" Nullable="false" />
+          <Property Name="ShippingStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ShipStatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="SmallType">
           <Key>
             <PropertyRef Name="SmallTypeID" />
           </Key>
-          <Property Name="SmallTypeID" Type="int" Nullable="false" />
+          <Property Name="SmallTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SmallTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="BigTypeID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Statuses">
-          <Key>
-            <PropertyRef Name="StatusID" />
-          </Key>
-          <Property Name="StatusID" Type="int" Nullable="false" />
-          <Property Name="StatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Wallet">
-          <Key>
-            <PropertyRef Name="WalletID" />
-          </Key>
-          <Property Name="MemberID" Type="int" Nullable="false" />
-          <Property Name="WalletID" Type="int" Nullable="false" />
-          <Property Name="CouponID" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_ArguePic_Argument">
           <End Role="Argument" Type="Self.Argument" Multiplicity="1" />
@@ -302,6 +317,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FAQ_FAQType">
+          <End Role="FAQType" Type="Self.FAQType" Multiplicity="1" />
+          <End Role="FAQ" Type="Self.FAQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAQType">
+              <PropertyRef Name="FAQTypeID" />
+            </Principal>
+            <Dependent Role="FAQ">
+              <PropertyRef Name="FAQTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Follows_MemberAccount">
           <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
           <End Role="Follows" Type="Self.Follows" Multiplicity="*" />
@@ -350,7 +377,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MemberAccount_RegionList1">
+        <Association Name="FK_MemberAccount_RegionList">
           <End Role="RegionList" Type="Self.RegionList" Multiplicity="1" />
           <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="*" />
           <ReferentialConstraint>
@@ -447,11 +474,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orders_Statuses">
-          <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+          <End Role="OrderStatuses" Type="Self.OrderStatuses" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Statuses">
-              <PropertyRef Name="StatusID" />
+            <Principal Role="OrderStatuses">
+              <PropertyRef Name="OrderStatusID" />
             </Principal>
             <Dependent Role="Orders">
               <PropertyRef Name="StatusID" />
@@ -506,6 +533,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RegionList_CountryList">
+          <End Role="CountryList" Type="Self.CountryList" Multiplicity="0..1" />
+          <End Role="RegionList" Type="Self.RegionList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryList">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="RegionList">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SalesCourt_MemberAccount">
           <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -544,24 +583,24 @@
         </Association>
         <Association Name="FK_Wallet_Coupons">
           <End Role="Coupons" Type="Self.Coupons" Multiplicity="1" />
-          <End Role="Wallet" Type="Self.Wallet" Multiplicity="*" />
+          <End Role="OfficialCoupons" Type="Self.OfficialCoupons" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Coupons">
               <PropertyRef Name="CouponID" />
             </Principal>
-            <Dependent Role="Wallet">
+            <Dependent Role="OfficialCoupons">
               <PropertyRef Name="CouponID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Wallet_MemberAccount">
           <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
-          <End Role="Wallet" Type="Self.Wallet" Multiplicity="*" />
+          <End Role="OfficialCoupons" Type="Self.OfficialCoupons" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MemberAccount">
               <PropertyRef Name="MemberID" />
             </Principal>
-            <Dependent Role="Wallet">
+            <Dependent Role="OfficialCoupons">
               <PropertyRef Name="MemberID" />
             </Dependent>
           </ReferentialConstraint>
@@ -574,13 +613,17 @@
           <EntitySet Name="BigType" EntityType="Self.BigType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CommentPic" EntityType="Self.CommentPic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CountryList" EntityType="Self.CountryList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Coupons" EntityType="Self.Coupons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FAQ" EntityType="Self.FAQ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FAQType" EntityType="Self.FAQType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Follows" EntityType="Self.Follows" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Likes" EntityType="Self.Likes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberAccount" EntityType="Self.MemberAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OfficialCoupons" EntityType="Self.OfficialCoupons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderStatuses" EntityType="Self.OrderStatuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductDetail" EntityType="Self.ProductDetail" Schema="dbo" store:Type="Tables" />
@@ -589,8 +632,6 @@
           <EntitySet Name="Shipper" EntityType="Self.Shipper" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShippingStatuses" EntityType="Self.ShippingStatuses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SmallType" EntityType="Self.SmallType" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Wallet" EntityType="Self.Wallet" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ArguePic_Argument" Association="Self.FK_ArguePic_Argument">
             <End Role="Argument" EntitySet="Argument" />
             <End Role="ArguePic" EntitySet="ArguePic" />
@@ -615,6 +656,10 @@
             <End Role="Comment" EntitySet="Comment" />
             <End Role="CommentPic" EntitySet="CommentPic" />
           </AssociationSet>
+          <AssociationSet Name="FK_FAQ_FAQType" Association="Self.FK_FAQ_FAQType">
+            <End Role="FAQType" EntitySet="FAQType" />
+            <End Role="FAQ" EntitySet="FAQ" />
+          </AssociationSet>
           <AssociationSet Name="FK_Follows_MemberAccount" Association="Self.FK_Follows_MemberAccount">
             <End Role="MemberAccount" EntitySet="MemberAccount" />
             <End Role="Follows" EntitySet="Follows" />
@@ -631,7 +676,7 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="Likes" EntitySet="Likes" />
           </AssociationSet>
-          <AssociationSet Name="FK_MemberAccount_RegionList1" Association="Self.FK_MemberAccount_RegionList1">
+          <AssociationSet Name="FK_MemberAccount_RegionList" Association="Self.FK_MemberAccount_RegionList">
             <End Role="RegionList" EntitySet="RegionList" />
             <End Role="MemberAccount" EntitySet="MemberAccount" />
           </AssociationSet>
@@ -664,7 +709,7 @@
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_Orders_Statuses" Association="Self.FK_Orders_Statuses">
-            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="OrderStatuses" EntitySet="OrderStatuses" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_SalesCourt" Association="Self.FK_Product_SalesCourt">
@@ -683,6 +728,10 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductPic" EntitySet="ProductPic" />
           </AssociationSet>
+          <AssociationSet Name="FK_RegionList_CountryList" Association="Self.FK_RegionList_CountryList">
+            <End Role="CountryList" EntitySet="CountryList" />
+            <End Role="RegionList" EntitySet="RegionList" />
+          </AssociationSet>
           <AssociationSet Name="FK_SalesCourt_MemberAccount" Association="Self.FK_SalesCourt_MemberAccount">
             <End Role="MemberAccount" EntitySet="MemberAccount" />
             <End Role="Product" EntitySet="Product" />
@@ -697,14 +746,15 @@
           </AssociationSet>
           <AssociationSet Name="FK_Wallet_Coupons" Association="Self.FK_Wallet_Coupons">
             <End Role="Coupons" EntitySet="Coupons" />
-            <End Role="Wallet" EntitySet="Wallet" />
+            <End Role="OfficialCoupons" EntitySet="OfficialCoupons" />
           </AssociationSet>
           <AssociationSet Name="FK_Wallet_MemberAccount" Association="Self.FK_Wallet_MemberAccount">
             <End Role="MemberAccount" EntitySet="MemberAccount" />
-            <End Role="Wallet" EntitySet="Wallet" />
+            <End Role="OfficialCoupons" EntitySet="OfficialCoupons" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="iSpanProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -712,7 +762,7 @@
           <Key>
             <PropertyRef Name="AdID" />
           </Key>
-          <Property Name="AdID" Type="Int32" Nullable="false" />
+          <Property Name="AdID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AdName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AdFee" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
@@ -720,7 +770,7 @@
           <Key>
             <PropertyRef Name="ArguePicID" />
           </Key>
-          <Property Name="ArguePicID" Type="Int32" Nullable="false" />
+          <Property Name="ArguePicID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ArguementID" Type="Int32" Nullable="false" />
           <Property Name="ArguePic1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="Argument" Relationship="Self.FK_ArguePic_Argument" FromRole="ArguePic" ToRole="Argument" />
@@ -730,8 +780,8 @@
             <PropertyRef Name="ArgumentID" />
           </Key>
           <Property Name="OrderID" Type="Int32" Nullable="false" />
-          <Property Name="ArgumentID" Type="Int32" Nullable="false" />
-          <Property Name="ChangeorReturn" Type="Boolean" />
+          <Property Name="ArgumentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChangeorReturn" Type="Boolean" Nullable="false" />
           <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ArgumentTypeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ArguePic" Relationship="Self.FK_ArguePic_Argument" FromRole="Argument" ToRole="ArguePic" />
@@ -742,15 +792,15 @@
           <Key>
             <PropertyRef Name="ArgumentTypeID" />
           </Key>
-          <Property Name="ArgumentTypeID" Type="Int32" Nullable="false" />
-          <Property Name="ArgumentTypeName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ArgumentTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArgumentTypeName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Argument" Relationship="Self.FK_Argument_ArgumentType" FromRole="ArgumentType" ToRole="Argument" />
         </EntityType>
         <EntityType Name="BigType">
           <Key>
             <PropertyRef Name="BigTypeID" />
           </Key>
-          <Property Name="BigTypeID" Type="Int32" Nullable="false" />
+          <Property Name="BigTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BigTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="SmallType" Relationship="Self.FK_SmallType_BigType" FromRole="BigType" ToRole="SmallType" />
         </EntityType>
@@ -762,7 +812,7 @@
           <Property Name="MemberID" Type="Int32" Nullable="false" />
           <Property Name="Comment1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Star" Type="Byte" Nullable="false" />
-          <Property Name="CommentID" Type="Int32" Nullable="false" />
+          <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="MemberAccount" Relationship="Self.FK_Comment_MemberAccount" FromRole="Comment" ToRole="MemberAccount" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Comment_SalesCourt" FromRole="Comment" ToRole="Product" />
           <NavigationProperty Name="CommentPic" Relationship="Self.FK_CommentPic_Comment" FromRole="Comment" ToRole="CommentPic" />
@@ -776,34 +826,50 @@
           <Property Name="CommentPic1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="Comment" Relationship="Self.FK_CommentPic_Comment" FromRole="CommentPic" ToRole="Comment" />
         </EntityType>
+        <EntityType Name="CountryList">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="RegionList" Relationship="Self.FK_RegionList_CountryList" FromRole="CountryList" ToRole="RegionList" />
+        </EntityType>
         <EntityType Name="Coupons">
           <Key>
             <PropertyRef Name="CouponID" />
           </Key>
-          <Property Name="CouponID" Type="Int32" Nullable="false" />
+          <Property Name="CouponID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CouponName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="WalletID" Type="Int32" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ExpiredDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Discount" Type="Single" Nullable="false" />
-          <Property Name="ExpireN_A" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Coupons" FromRole="Coupons" ToRole="Orders" />
-          <NavigationProperty Name="Wallet" Relationship="Self.FK_Wallet_Coupons" FromRole="Coupons" ToRole="Wallet" />
+          <NavigationProperty Name="OfficialCoupons" Relationship="Self.FK_Wallet_Coupons" FromRole="Coupons" ToRole="OfficialCoupons" />
         </EntityType>
         <EntityType Name="FAQ">
           <Key>
             <PropertyRef Name="FAQID" />
           </Key>
-          <Property Name="FAQID" Type="Int32" Nullable="false" />
+          <Property Name="FAQID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Answer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Question" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FAQTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FAQType" Relationship="Self.FK_FAQ_FAQType" FromRole="FAQ" ToRole="FAQType" />
+        </EntityType>
+        <EntityType Name="FAQType">
+          <Key>
+            <PropertyRef Name="FAQTypeID" />
+          </Key>
+          <Property Name="FAQTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FAQTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FAQ" Relationship="Self.FK_FAQ_FAQType" FromRole="FAQType" ToRole="FAQ" />
         </EntityType>
         <EntityType Name="Follows">
           <Key>
             <PropertyRef Name="FollowID" />
           </Key>
           <Property Name="MemberID" Type="Int32" Nullable="false" />
-          <Property Name="FollowID" Type="Int32" Nullable="false" />
+          <Property Name="FollowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FollowedMemID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="MemberAccount" Relationship="Self.FK_Follows_MemberAccount" FromRole="Follows" ToRole="MemberAccount" />
           <NavigationProperty Name="MemberAccount1" Relationship="Self.FK_Follows_MemberAccount1" FromRole="Follows" ToRole="MemberAccount" />
@@ -813,7 +879,7 @@
             <PropertyRef Name="LikeID" />
           </Key>
           <Property Name="MemberID" Type="Int32" Nullable="false" />
-          <Property Name="LikeID" Type="Int32" Nullable="false" />
+          <Property Name="LikeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="MemberAccount" Relationship="Self.FK_Likes_MemberAccount" FromRole="Likes" ToRole="MemberAccount" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Likes_Product" FromRole="Likes" ToRole="Product" />
@@ -834,7 +900,7 @@
           <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MemPic" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="Comment" Relationship="Self.FK_Comment_MemberAccount" FromRole="MemberAccount" ToRole="Comment" />
           <NavigationProperty Name="Follows" Relationship="Self.FK_Follows_MemberAccount" FromRole="MemberAccount" ToRole="Follows" />
@@ -843,13 +909,24 @@
           <NavigationProperty Name="RegionList" Relationship="Self.FK_MemberAccount_RegionList" FromRole="MemberAccount" ToRole="RegionList" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_MemberAccount" FromRole="MemberAccount" ToRole="Orders" />
           <NavigationProperty Name="Product" Relationship="Self.FK_SalesCourt_MemberAccount" FromRole="MemberAccount" ToRole="Product" />
-          <NavigationProperty Name="Wallet" Relationship="Self.FK_Wallet_MemberAccount" FromRole="MemberAccount" ToRole="Wallet" />
+          <NavigationProperty Name="OfficialCoupons" Relationship="Self.FK_Wallet_MemberAccount" FromRole="MemberAccount" ToRole="OfficialCoupons" />
+        </EntityType>
+        <EntityType Name="OfficialCoupons">
+          <Key>
+            <PropertyRef Name="OfficialCouponsID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="OfficialCouponsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CouponID" Type="Int32" Nullable="false" />
+          <Property Name="ExpireN_A" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Coupons" Relationship="Self.FK_Wallet_Coupons" FromRole="OfficialCoupons" ToRole="Coupons" />
+          <NavigationProperty Name="MemberAccount" Relationship="Self.FK_Wallet_MemberAccount" FromRole="OfficialCoupons" ToRole="MemberAccount" />
         </EntityType>
         <EntityType Name="OrderDetails">
           <Key>
             <PropertyRef Name="OrderDetailID" />
           </Key>
-          <Property Name="OrderDetailID" Type="Int32" Nullable="false" />
+          <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderID" Type="Int32" Nullable="false" />
           <Property Name="ProductDetailID" Type="Int32" Nullable="false" />
           <Property Name="ShipperID" Type="Int32" Nullable="false" />
@@ -867,7 +944,7 @@
           <Key>
             <PropertyRef Name="OrderID" />
           </Key>
-          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MemberID" Type="Int32" Nullable="false" />
           <Property Name="OrderDatetime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="RecieveAdr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -880,13 +957,21 @@
           <NavigationProperty Name="MemberAccount" Relationship="Self.FK_Orders_MemberAccount" FromRole="Orders" ToRole="MemberAccount" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Orders" FromRole="Orders" ToRole="OrderDetails" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Orders_SalesCourt" FromRole="Orders" ToRole="Product" />
-          <NavigationProperty Name="Statuses" Relationship="Self.FK_Orders_Statuses" FromRole="Orders" ToRole="Statuses" />
+          <NavigationProperty Name="OrderStatuses" Relationship="Self.FK_Orders_Statuses" FromRole="Orders" ToRole="OrderStatuses" />
+        </EntityType>
+        <EntityType Name="OrderStatuses">
+          <Key>
+            <PropertyRef Name="OrderStatusID" />
+          </Key>
+          <Property Name="OrderStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Statuses" FromRole="OrderStatuses" ToRole="Orders" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
             <PropertyRef Name="PaymentID" />
           </Key>
-          <Property Name="PaymentID" Type="Int32" Nullable="false" />
+          <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PaymentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Fee" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
@@ -930,7 +1015,7 @@
             <PropertyRef Name="PicID" />
           </Key>
           <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <Property Name="PicID" Type="Int32" Nullable="false" />
+          <Property Name="PicID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="picture" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="Self.FK_ProductPic_Product" FromRole="ProductPic" ToRole="Product" />
         </EntityType>
@@ -938,8 +1023,10 @@
           <Key>
             <PropertyRef Name="RegionID" />
           </Key>
-          <Property Name="RegionID" Type="Int32" Nullable="false" />
-          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountryID" Type="Int32" />
+          <NavigationProperty Name="CountryList" Relationship="Self.FK_RegionList_CountryList" FromRole="RegionList" ToRole="CountryList" />
           <NavigationProperty Name="MemberAccount" Relationship="Self.FK_MemberAccount_RegionList" FromRole="RegionList" ToRole="MemberAccount" />
           <NavigationProperty Name="Product" Relationship="Self.FK_SalesCourt_RegionList" FromRole="RegionList" ToRole="Product" />
         </EntityType>
@@ -947,7 +1034,7 @@
           <Key>
             <PropertyRef Name="ShipperID" />
           </Key>
-          <Property Name="ShipperID" Type="Int32" Nullable="false" />
+          <Property Name="ShipperID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ShipperName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Shipper" FromRole="Shipper" ToRole="OrderDetails" />
@@ -957,7 +1044,7 @@
           <Key>
             <PropertyRef Name="ShippingStatusID" />
           </Key>
-          <Property Name="ShippingStatusID" Type="Int32" Nullable="false" />
+          <Property Name="ShippingStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ShipStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_ShippingStatuses" FromRole="ShippingStatuses" ToRole="OrderDetails" />
         </EntityType>
@@ -965,29 +1052,11 @@
           <Key>
             <PropertyRef Name="SmallTypeID" />
           </Key>
-          <Property Name="SmallTypeID" Type="Int32" Nullable="false" />
+          <Property Name="SmallTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SmallTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="BigTypeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BigType" Relationship="Self.FK_SmallType_BigType" FromRole="SmallType" ToRole="BigType" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Product_SmallType" FromRole="SmallType" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Statuses">
-          <Key>
-            <PropertyRef Name="StatusID" />
-          </Key>
-          <Property Name="StatusID" Type="Int32" Nullable="false" />
-          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Statuses" FromRole="Statuses" ToRole="Orders" />
-        </EntityType>
-        <EntityType Name="Wallet">
-          <Key>
-            <PropertyRef Name="WalletID" />
-          </Key>
-          <Property Name="MemberID" Type="Int32" Nullable="false" />
-          <Property Name="WalletID" Type="Int32" Nullable="false" />
-          <Property Name="CouponID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Coupons" Relationship="Self.FK_Wallet_Coupons" FromRole="Wallet" ToRole="Coupons" />
-          <NavigationProperty Name="MemberAccount" Relationship="Self.FK_Wallet_MemberAccount" FromRole="Wallet" ToRole="MemberAccount" />
         </EntityType>
         <Association Name="FK_ArguePic_Argument">
           <End Role="Argument" Type="Self.Argument" Multiplicity="1" />
@@ -1073,6 +1142,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RegionList_CountryList">
+          <End Role="CountryList" Type="Self.CountryList" Multiplicity="0..1" />
+          <End Role="RegionList" Type="Self.RegionList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryList">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="RegionList">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Orders_Coupons">
           <End Role="Coupons" Type="Self.Coupons" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
@@ -1087,13 +1168,25 @@
         </Association>
         <Association Name="FK_Wallet_Coupons">
           <End Role="Coupons" Type="Self.Coupons" Multiplicity="1" />
-          <End Role="Wallet" Type="Self.Wallet" Multiplicity="*" />
+          <End Role="OfficialCoupons" Type="Self.OfficialCoupons" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Coupons">
               <PropertyRef Name="CouponID" />
             </Principal>
-            <Dependent Role="Wallet">
+            <Dependent Role="OfficialCoupons">
               <PropertyRef Name="CouponID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FAQ_FAQType">
+          <End Role="FAQType" Type="Self.FAQType" Multiplicity="1" />
+          <End Role="FAQ" Type="Self.FAQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAQType">
+              <PropertyRef Name="FAQTypeID" />
+            </Principal>
+            <Dependent Role="FAQ">
+              <PropertyRef Name="FAQTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1183,12 +1276,12 @@
         </Association>
         <Association Name="FK_Wallet_MemberAccount">
           <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
-          <End Role="Wallet" Type="Self.Wallet" Multiplicity="*" />
+          <End Role="OfficialCoupons" Type="Self.OfficialCoupons" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MemberAccount">
               <PropertyRef Name="MemberID" />
             </Principal>
-            <Dependent Role="Wallet">
+            <Dependent Role="OfficialCoupons">
               <PropertyRef Name="MemberID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1254,11 +1347,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orders_Statuses">
-          <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+          <End Role="OrderStatuses" Type="Self.OrderStatuses" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Statuses">
-              <PropertyRef Name="StatusID" />
+            <Principal Role="OrderStatuses">
+              <PropertyRef Name="OrderStatusID" />
             </Principal>
             <Dependent Role="Orders">
               <PropertyRef Name="StatusID" />
@@ -1325,7 +1418,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="iSpanProjectEntities5" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="iSpanProjectEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AD" EntityType="Self.AD" />
           <EntitySet Name="ArguePic" EntityType="Self.ArguePic" />
           <EntitySet Name="Argument" EntityType="Self.Argument" />
@@ -1333,13 +1426,17 @@
           <EntitySet Name="BigType" EntityType="Self.BigType" />
           <EntitySet Name="Comment" EntityType="Self.Comment" />
           <EntitySet Name="CommentPic" EntityType="Self.CommentPic" />
+          <EntitySet Name="CountryList" EntityType="Self.CountryList" />
           <EntitySet Name="Coupons" EntityType="Self.Coupons" />
           <EntitySet Name="FAQ" EntityType="Self.FAQ" />
+          <EntitySet Name="FAQType" EntityType="Self.FAQType" />
           <EntitySet Name="Follows" EntityType="Self.Follows" />
           <EntitySet Name="Likes" EntityType="Self.Likes" />
           <EntitySet Name="MemberAccount" EntityType="Self.MemberAccount" />
+          <EntitySet Name="OfficialCoupons" EntityType="Self.OfficialCoupons" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" />
           <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="OrderStatuses" EntityType="Self.OrderStatuses" />
           <EntitySet Name="Payment" EntityType="Self.Payment" />
           <EntitySet Name="Product" EntityType="Self.Product" />
           <EntitySet Name="ProductDetail" EntityType="Self.ProductDetail" />
@@ -1348,8 +1445,6 @@
           <EntitySet Name="Shipper" EntityType="Self.Shipper" />
           <EntitySet Name="ShippingStatuses" EntityType="Self.ShippingStatuses" />
           <EntitySet Name="SmallType" EntityType="Self.SmallType" />
-          <EntitySet Name="Statuses" EntityType="Self.Statuses" />
-          <EntitySet Name="Wallet" EntityType="Self.Wallet" />
           <AssociationSet Name="FK_ArguePic_Argument" Association="Self.FK_ArguePic_Argument">
             <End Role="Argument" EntitySet="Argument" />
             <End Role="ArguePic" EntitySet="ArguePic" />
@@ -1378,13 +1473,21 @@
             <End Role="Comment" EntitySet="Comment" />
             <End Role="CommentPic" EntitySet="CommentPic" />
           </AssociationSet>
+          <AssociationSet Name="FK_RegionList_CountryList" Association="Self.FK_RegionList_CountryList">
+            <End Role="CountryList" EntitySet="CountryList" />
+            <End Role="RegionList" EntitySet="RegionList" />
+          </AssociationSet>
           <AssociationSet Name="FK_Orders_Coupons" Association="Self.FK_Orders_Coupons">
             <End Role="Coupons" EntitySet="Coupons" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_Wallet_Coupons" Association="Self.FK_Wallet_Coupons">
             <End Role="Coupons" EntitySet="Coupons" />
-            <End Role="Wallet" EntitySet="Wallet" />
+            <End Role="OfficialCoupons" EntitySet="OfficialCoupons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FAQ_FAQType" Association="Self.FK_FAQ_FAQType">
+            <End Role="FAQType" EntitySet="FAQType" />
+            <End Role="FAQ" EntitySet="FAQ" />
           </AssociationSet>
           <AssociationSet Name="FK_Follows_MemberAccount" Association="Self.FK_Follows_MemberAccount">
             <End Role="MemberAccount" EntitySet="MemberAccount" />
@@ -1416,7 +1519,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_Wallet_MemberAccount" Association="Self.FK_Wallet_MemberAccount">
             <End Role="MemberAccount" EntitySet="MemberAccount" />
-            <End Role="Wallet" EntitySet="Wallet" />
+            <End Role="OfficialCoupons" EntitySet="OfficialCoupons" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderDetails_Orders" Association="Self.FK_OrderDetails_Orders">
             <End Role="Orders" EntitySet="Orders" />
@@ -1439,7 +1542,7 @@
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_Orders_Statuses" Association="Self.FK_Orders_Statuses">
-            <End Role="Statuses" EntitySet="Statuses" />
+            <End Role="OrderStatuses" EntitySet="OrderStatuses" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_SalesCourt" Association="Self.FK_Product_SalesCourt">
@@ -1468,7 +1571,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="iSpanProjectModelStoreContainer" CdmEntityContainer="iSpanProjectEntities5">
+        <EntityContainerMapping StorageEntityContainer="iSpanProjectModelStoreContainer" CdmEntityContainer="iSpanProjectEntities">
           <EntitySetMapping Name="AD">
             <EntityTypeMapping TypeName="iSpanProjectModel.AD">
               <MappingFragment StoreEntitySet="AD">
@@ -1534,16 +1637,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CountryList">
+            <EntityTypeMapping TypeName="iSpanProjectModel.CountryList">
+              <MappingFragment StoreEntitySet="CountryList">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Coupons">
             <EntityTypeMapping TypeName="iSpanProjectModel.Coupons">
               <MappingFragment StoreEntitySet="Coupons">
                 <ScalarProperty Name="CouponID" ColumnName="CouponID" />
                 <ScalarProperty Name="CouponName" ColumnName="CouponName" />
-                <ScalarProperty Name="WalletID" ColumnName="WalletID" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
                 <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="ExpireN_A" ColumnName="ExpireN_A" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1553,6 +1662,15 @@
                 <ScalarProperty Name="FAQID" ColumnName="FAQID" />
                 <ScalarProperty Name="Answer" ColumnName="Answer" />
                 <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="FAQTypeID" ColumnName="FAQTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FAQType">
+            <EntityTypeMapping TypeName="iSpanProjectModel.FAQType">
+              <MappingFragment StoreEntitySet="FAQType">
+                <ScalarProperty Name="FAQTypeID" ColumnName="FAQTypeID" />
+                <ScalarProperty Name="FAQTypeName" ColumnName="FAQTypeName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1594,6 +1712,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="OfficialCoupons">
+            <EntityTypeMapping TypeName="iSpanProjectModel.OfficialCoupons">
+              <MappingFragment StoreEntitySet="OfficialCoupons">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="OfficialCouponsID" ColumnName="OfficialCouponsID" />
+                <ScalarProperty Name="CouponID" ColumnName="CouponID" />
+                <ScalarProperty Name="ExpireN_A" ColumnName="ExpireN_A" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="OrderDetails">
             <EntityTypeMapping TypeName="iSpanProjectModel.OrderDetails">
               <MappingFragment StoreEntitySet="OrderDetails">
@@ -1620,6 +1748,14 @@
                 <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
                 <ScalarProperty Name="CouponID" ColumnName="CouponID" />
                 <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStatuses">
+            <EntityTypeMapping TypeName="iSpanProjectModel.OrderStatuses">
+              <MappingFragment StoreEntitySet="OrderStatuses">
+                <ScalarProperty Name="OrderStatusID" ColumnName="OrderStatusID" />
+                <ScalarProperty Name="OrderStatusName" ColumnName="OrderStatusName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1671,7 +1807,8 @@
             <EntityTypeMapping TypeName="iSpanProjectModel.RegionList">
               <MappingFragment StoreEntitySet="RegionList">
                 <ScalarProperty Name="RegionID" ColumnName="RegionID" />
-                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1698,23 +1835,6 @@
                 <ScalarProperty Name="SmallTypeID" ColumnName="SmallTypeID" />
                 <ScalarProperty Name="SmallTypeName" ColumnName="SmallTypeName" />
                 <ScalarProperty Name="BigTypeID" ColumnName="BigTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Statuses">
-            <EntityTypeMapping TypeName="iSpanProjectModel.Statuses">
-              <MappingFragment StoreEntitySet="Statuses">
-                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
-                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Wallet">
-            <EntityTypeMapping TypeName="iSpanProjectModel.Wallet">
-              <MappingFragment StoreEntitySet="Wallet">
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-                <ScalarProperty Name="WalletID" ColumnName="WalletID" />
-                <ScalarProperty Name="CouponID" ColumnName="CouponID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

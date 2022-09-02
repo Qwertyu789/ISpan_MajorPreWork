@@ -16,7 +16,7 @@ namespace MajorHW
     {
         public string _ac = "";
         byte[] img;
-        iSpanProjectEntities5 dbispan = new iSpanProjectEntities5();
+        iSpanProjectEntities dbispan = new iSpanProjectEntities();
 
         public MemberUpdate()
         {

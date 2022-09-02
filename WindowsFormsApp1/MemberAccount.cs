@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
             this.Likes = new HashSet<Likes>();
             this.Orders = new HashSet<Orders>();
             this.Product = new HashSet<Product>();
-            this.Wallet = new HashSet<Wallet>();
+            this.OfficialCoupons = new HashSet<OfficialCoupons>();
         }
     
         public int MemberID { get; set; }
@@ -55,6 +55,6 @@ namespace WindowsFormsApp1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Product { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Wallet> Wallet { get; set; }
+        public virtual ICollection<OfficialCoupons> OfficialCoupons { get; set; }
     }
 }

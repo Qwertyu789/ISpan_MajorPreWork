@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="AdID" />
     </Key>
-    <Property Name="AdID" Type="Int32" Nullable="false" />
+    <Property Name="AdID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="AdName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="AdFee" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
   </EntityType>
@@ -12,7 +12,7 @@
     <Key>
       <PropertyRef Name="ArguePicID" />
     </Key>
-    <Property Name="ArguePicID" Type="Int32" Nullable="false" />
+    <Property Name="ArguePicID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ArguementID" Type="Int32" Nullable="false" />
     <Property Name="ArguePic1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
     <NavigationProperty Name="Argument" Relationship="Self.FK_ArguePic_Argument" FromRole="ArguePic" ToRole="Argument" />
@@ -22,29 +22,29 @@
       <PropertyRef Name="ArgumentID" />
     </Key>
     <Property Name="OrderID" Type="Int32" Nullable="false" />
-    <Property Name="ArgumentID" Type="Int32" Nullable="false" />
+    <Property Name="ArgumentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ChangeorReturn" Type="Boolean" Nullable="false" />
     <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ArgumentTypeID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="ArguePic" Relationship="Self.FK_ArguePic_Argument" FromRole="Argument" ToRole="ArguePic" />
+    <NavigationProperty Name="ArguePics" Relationship="Self.FK_ArguePic_Argument" FromRole="Argument" ToRole="ArguePic" />
     <NavigationProperty Name="ArgumentType" Relationship="Self.FK_Argument_ArgumentType" FromRole="Argument" ToRole="ArgumentType" />
-    <NavigationProperty Name="Orders" Relationship="Self.FK_Argument_Orders" FromRole="Argument" ToRole="Orders" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Argument_Orders" FromRole="Argument" ToRole="Orders" />
   </EntityType>
   <EntityType Name="ArgumentType">
     <Key>
       <PropertyRef Name="ArgumentTypeID" />
     </Key>
-    <Property Name="ArgumentTypeID" Type="Int32" Nullable="false" />
+    <Property Name="ArgumentTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ArgumentTypeName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Argument" Relationship="Self.FK_Argument_ArgumentType" FromRole="ArgumentType" ToRole="Argument" />
+    <NavigationProperty Name="Arguments" Relationship="Self.FK_Argument_ArgumentType" FromRole="ArgumentType" ToRole="Argument" />
   </EntityType>
   <EntityType Name="BigType">
     <Key>
       <PropertyRef Name="BigTypeID" />
     </Key>
-    <Property Name="BigTypeID" Type="Int32" Nullable="false" />
+    <Property Name="BigTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="BigTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="SmallType" Relationship="Self.FK_SmallType_BigType" FromRole="BigType" ToRole="SmallType" />
+    <NavigationProperty Name="SmallTypes" Relationship="Self.FK_SmallType_BigType" FromRole="BigType" ToRole="SmallType" />
   </EntityType>
   <EntityType Name="Comment">
     <Key>
@@ -54,10 +54,10 @@
     <Property Name="MemberID" Type="Int32" Nullable="false" />
     <Property Name="Comment1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Star" Type="Byte" Nullable="false" />
-    <Property Name="CommentID" Type="Int32" Nullable="false" />
+    <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="MemberAccount" Relationship="Self.FK_Comment_MemberAccount" FromRole="Comment" ToRole="MemberAccount" />
     <NavigationProperty Name="Product" Relationship="Self.FK_Comment_SalesCourt" FromRole="Comment" ToRole="Product" />
-    <NavigationProperty Name="CommentPic" Relationship="Self.FK_CommentPic_Comment" FromRole="Comment" ToRole="CommentPic" />
+    <NavigationProperty Name="CommentPics" Relationship="Self.FK_CommentPic_Comment" FromRole="Comment" ToRole="CommentPic" />
   </EntityType>
   <EntityType Name="CommentPic">
     <Key>
@@ -68,32 +68,60 @@
     <Property Name="CommentPic1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
     <NavigationProperty Name="Comment" Relationship="Self.FK_CommentPic_Comment" FromRole="CommentPic" ToRole="Comment" />
   </EntityType>
+  <EntityType Name="CountryList">
+    <Key>
+      <PropertyRef Name="CountryID" />
+    </Key>
+    <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="RegionLists" Relationship="Self.FK_RegionList_CountryList" FromRole="CountryList" ToRole="RegionList" />
+  </EntityType>
+  <EntityType Name="Coupon">
+    <Key>
+      <PropertyRef Name="CouponID" />
+    </Key>
+    <Property Name="CouponID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CouponName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ExpiredDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Discount" Type="Single" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Coupons" FromRole="Coupons" ToRole="Orders" />
+    <NavigationProperty Name="OfficialCoupons" Relationship="Self.FK_Wallet_Coupons" FromRole="Coupons" ToRole="OfficialCoupons" />
+  </EntityType>
   <EntityType Name="FAQ">
     <Key>
       <PropertyRef Name="FAQID" />
     </Key>
-    <Property Name="FAQID" Type="Int32" Nullable="false" />
+    <Property Name="FAQID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Answer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Question" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="FAQTypeID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="FAQType" Relationship="iSpanProjectModel.FK_FAQ_FAQType" FromRole="FAQ" ToRole="FAQType" />
+    <NavigationProperty Name="FAQType" Relationship="Self.FK_FAQ_FAQType" FromRole="FAQ" ToRole="FAQType" />
   </EntityType>
-  <EntityType Name="Follows">
+  <EntityType Name="FAQType">
+    <Key>
+      <PropertyRef Name="FAQTypeID" />
+    </Key>
+    <Property Name="FAQTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FAQTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="FAQs" Relationship="Self.FK_FAQ_FAQType" FromRole="FAQType" ToRole="FAQ" />
+  </EntityType>
+  <EntityType Name="Follow">
     <Key>
       <PropertyRef Name="FollowID" />
     </Key>
     <Property Name="MemberID" Type="Int32" Nullable="false" />
-    <Property Name="FollowID" Type="Int32" Nullable="false" />
+    <Property Name="FollowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="FollowedMemID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="MemberAccount" Relationship="Self.FK_Follows_MemberAccount" FromRole="Follows" ToRole="MemberAccount" />
     <NavigationProperty Name="MemberAccount1" Relationship="Self.FK_Follows_MemberAccount1" FromRole="Follows" ToRole="MemberAccount" />
   </EntityType>
-  <EntityType Name="Likes">
+  <EntityType Name="Like">
     <Key>
       <PropertyRef Name="LikeID" />
     </Key>
     <Property Name="MemberID" Type="Int32" Nullable="false" />
-    <Property Name="LikeID" Type="Int32" Nullable="false" />
+    <Property Name="LikeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ProductID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="MemberAccount" Relationship="Self.FK_Likes_MemberAccount" FromRole="Likes" ToRole="MemberAccount" />
     <NavigationProperty Name="Product" Relationship="Self.FK_Likes_Product" FromRole="Likes" ToRole="Product" />
@@ -116,21 +144,31 @@
     <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="MemPic" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-    <NavigationProperty Name="Comment" Relationship="Self.FK_Comment_MemberAccount" FromRole="MemberAccount" ToRole="Comment" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_MemberAccount" FromRole="MemberAccount" ToRole="Comment" />
     <NavigationProperty Name="Follows" Relationship="Self.FK_Follows_MemberAccount" FromRole="MemberAccount" ToRole="Follows" />
     <NavigationProperty Name="Follows1" Relationship="Self.FK_Follows_MemberAccount1" FromRole="MemberAccount" ToRole="Follows" />
     <NavigationProperty Name="Likes" Relationship="Self.FK_Likes_MemberAccount" FromRole="MemberAccount" ToRole="Likes" />
     <NavigationProperty Name="RegionList" Relationship="Self.FK_MemberAccount_RegionList" FromRole="MemberAccount" ToRole="RegionList" />
     <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_MemberAccount" FromRole="MemberAccount" ToRole="Orders" />
-    <NavigationProperty Name="Product" Relationship="Self.FK_SalesCourt_MemberAccount" FromRole="MemberAccount" ToRole="Product" />
-    <NavigationProperty Name="Wallet" Relationship="Self.FK_Wallet_MemberAccount" FromRole="MemberAccount" ToRole="Wallet" />
-    <NavigationProperty Name="OfficialCoupons" Relationship="iSpanProjectModel.FK_Wallet_MemberAccount1" FromRole="MemberAccount" ToRole="OfficialCoupons" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_SalesCourt_MemberAccount" FromRole="MemberAccount" ToRole="Product" />
+    <NavigationProperty Name="OfficialCoupons" Relationship="Self.FK_Wallet_MemberAccount" FromRole="MemberAccount" ToRole="OfficialCoupons" />
   </EntityType>
-  <EntityType Name="OrderDetails">
+  <EntityType Name="OfficialCoupon">
+    <Key>
+      <PropertyRef Name="OfficialCouponsID" />
+    </Key>
+    <Property Name="MemberID" Type="Int32" Nullable="false" />
+    <Property Name="OfficialCouponsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CouponID" Type="Int32" Nullable="false" />
+    <Property Name="ExpireN_A" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Coupon" Relationship="Self.FK_Wallet_Coupons" FromRole="OfficialCoupons" ToRole="Coupons" />
+    <NavigationProperty Name="MemberAccount" Relationship="Self.FK_Wallet_MemberAccount" FromRole="OfficialCoupons" ToRole="MemberAccount" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
     <Key>
       <PropertyRef Name="OrderDetailID" />
     </Key>
-    <Property Name="OrderDetailID" Type="Int32" Nullable="false" />
+    <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="OrderID" Type="Int32" Nullable="false" />
     <Property Name="ProductDetailID" Type="Int32" Nullable="false" />
     <Property Name="ShipperID" Type="Int32" Nullable="false" />
@@ -139,16 +177,16 @@
     <Property Name="RecieveDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="OutAdr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ShippingStatusID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Orders" Relationship="Self.FK_OrderDetails_Orders" FromRole="OrderDetails" ToRole="Orders" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetails_Orders" FromRole="OrderDetails" ToRole="Orders" />
     <NavigationProperty Name="ProductDetail" Relationship="Self.FK_OrderDetails_Product" FromRole="OrderDetails" ToRole="ProductDetail" />
     <NavigationProperty Name="Shipper" Relationship="Self.FK_OrderDetails_Shipper" FromRole="OrderDetails" ToRole="Shipper" />
-    <NavigationProperty Name="ShippingStatuses" Relationship="Self.FK_OrderDetails_ShippingStatuses" FromRole="OrderDetails" ToRole="ShippingStatuses" />
+    <NavigationProperty Name="ShippingStatus" Relationship="Self.FK_OrderDetails_ShippingStatuses" FromRole="OrderDetails" ToRole="ShippingStatuses" />
   </EntityType>
-  <EntityType Name="Orders">
+  <EntityType Name="Order">
     <Key>
       <PropertyRef Name="OrderID" />
     </Key>
-    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="MemberID" Type="Int32" Nullable="false" />
     <Property Name="OrderDatetime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="RecieveAdr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -156,19 +194,26 @@
     <Property Name="FinishDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="CouponID" Type="Int32" Nullable="false" />
     <Property Name="StatusID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Argument" Relationship="Self.FK_Argument_Orders" FromRole="Orders" ToRole="Argument" />
+    <NavigationProperty Name="Arguments" Relationship="Self.FK_Argument_Orders" FromRole="Orders" ToRole="Argument" />
+    <NavigationProperty Name="Coupon" Relationship="Self.FK_Orders_Coupons" FromRole="Orders" ToRole="Coupons" />
     <NavigationProperty Name="MemberAccount" Relationship="Self.FK_Orders_MemberAccount" FromRole="Orders" ToRole="MemberAccount" />
     <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Orders" FromRole="Orders" ToRole="OrderDetails" />
     <NavigationProperty Name="Product" Relationship="Self.FK_Orders_SalesCourt" FromRole="Orders" ToRole="Product" />
-    <NavigationProperty Name="Statuses" Relationship="Self.FK_Orders_Statuses" FromRole="Orders" ToRole="Statuses" />
-    <NavigationProperty Name="OrderStatuses" Relationship="iSpanProjectModel.FK_Orders_Statuses1" FromRole="Orders" ToRole="OrderStatuses" />
-    <NavigationProperty Name="Coupons" Relationship="iSpanProjectModel.FK_Orders_Coupons" FromRole="Orders" ToRole="Coupons" />
+    <NavigationProperty Name="OrderStatus" Relationship="Self.FK_Orders_Statuses" FromRole="Orders" ToRole="OrderStatuses" />
+  </EntityType>
+  <EntityType Name="OrderStatus">
+    <Key>
+      <PropertyRef Name="OrderStatusID" />
+    </Key>
+    <Property Name="OrderStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Statuses" FromRole="OrderStatuses" ToRole="Orders" />
   </EntityType>
   <EntityType Name="Payment">
     <Key>
       <PropertyRef Name="PaymentID" />
     </Key>
-    <Property Name="PaymentID" Type="Int32" Nullable="false" />
+    <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="PaymentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Fee" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
   </EntityType>
@@ -184,14 +229,14 @@
     <Property Name="AdFee" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="600" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ShipperID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Comment" Relationship="Self.FK_Comment_SalesCourt" FromRole="Product" ToRole="Comment" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_SalesCourt" FromRole="Product" ToRole="Comment" />
     <NavigationProperty Name="Likes" Relationship="Self.FK_Likes_Product" FromRole="Product" ToRole="Likes" />
     <NavigationProperty Name="MemberAccount" Relationship="Self.FK_SalesCourt_MemberAccount" FromRole="Product" ToRole="MemberAccount" />
     <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_SalesCourt" FromRole="Product" ToRole="Orders" />
-    <NavigationProperty Name="ProductDetail" Relationship="Self.FK_Product_SalesCourt" FromRole="Product" ToRole="ProductDetail" />
+    <NavigationProperty Name="ProductDetails" Relationship="Self.FK_Product_SalesCourt" FromRole="Product" ToRole="ProductDetail" />
     <NavigationProperty Name="Shipper" Relationship="Self.FK_Product_Shipper" FromRole="Product" ToRole="Shipper" />
     <NavigationProperty Name="SmallType" Relationship="Self.FK_Product_SmallType" FromRole="Product" ToRole="SmallType" />
-    <NavigationProperty Name="ProductPic" Relationship="Self.FK_ProductPic_Product" FromRole="Product" ToRole="ProductPic" />
+    <NavigationProperty Name="ProductPics" Relationship="Self.FK_ProductPic_Product" FromRole="Product" ToRole="ProductPic" />
     <NavigationProperty Name="RegionList" Relationship="Self.FK_SalesCourt_RegionList" FromRole="Product" ToRole="RegionList" />
   </EntityType>
   <EntityType Name="ProductDetail">
@@ -212,7 +257,7 @@
       <PropertyRef Name="PicID" />
     </Key>
     <Property Name="ProductID" Type="Int32" Nullable="false" />
-    <Property Name="PicID" Type="Int32" Nullable="false" />
+    <Property Name="PicID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="picture" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
     <NavigationProperty Name="Product" Relationship="Self.FK_ProductPic_Product" FromRole="ProductPic" ToRole="Product" />
   </EntityType>
@@ -220,29 +265,28 @@
     <Key>
       <PropertyRef Name="RegionID" />
     </Key>
-    <Property Name="RegionID" Type="Int32" Nullable="false" />
-    <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="MemberAccount" Relationship="Self.FK_MemberAccount_RegionList" FromRole="RegionList" ToRole="MemberAccount" />
-    <NavigationProperty Name="Product" Relationship="Self.FK_SalesCourt_RegionList" FromRole="RegionList" ToRole="Product" />
-    <Property Name="RegionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RegionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RegionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="CountryID" Type="Int32" />
-    <NavigationProperty Name="CountryList" Relationship="iSpanProjectModel.FK_RegionList_CountryList" FromRole="RegionList" ToRole="CountryList" />
+    <NavigationProperty Name="CountryList" Relationship="Self.FK_RegionList_CountryList" FromRole="RegionList" ToRole="CountryList" />
+    <NavigationProperty Name="MemberAccounts" Relationship="Self.FK_MemberAccount_RegionList" FromRole="RegionList" ToRole="MemberAccount" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_SalesCourt_RegionList" FromRole="RegionList" ToRole="Product" />
   </EntityType>
   <EntityType Name="Shipper">
     <Key>
       <PropertyRef Name="ShipperID" />
     </Key>
-    <Property Name="ShipperID" Type="Int32" Nullable="false" />
+    <Property Name="ShipperID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ShipperName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Shipper" FromRole="Shipper" ToRole="OrderDetails" />
-    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Shipper" FromRole="Shipper" ToRole="Product" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_Shipper" FromRole="Shipper" ToRole="Product" />
   </EntityType>
-  <EntityType Name="ShippingStatuses">
+  <EntityType Name="ShippingStatus">
     <Key>
       <PropertyRef Name="ShippingStatusID" />
     </Key>
-    <Property Name="ShippingStatusID" Type="Int32" Nullable="false" />
+    <Property Name="ShippingStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ShipStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_ShippingStatuses" FromRole="ShippingStatuses" ToRole="OrderDetails" />
   </EntityType>
@@ -250,28 +294,11 @@
     <Key>
       <PropertyRef Name="SmallTypeID" />
     </Key>
-    <Property Name="SmallTypeID" Type="Int32" Nullable="false" />
+    <Property Name="SmallTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="SmallTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="BigTypeID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="BigType" Relationship="Self.FK_SmallType_BigType" FromRole="SmallType" ToRole="BigType" />
-    <NavigationProperty Name="Product" Relationship="Self.FK_Product_SmallType" FromRole="SmallType" ToRole="Product" />
-  </EntityType>
-  <EntityType Name="Statuses">
-    <Key>
-      <PropertyRef Name="StatusID" />
-    </Key>
-    <Property Name="StatusID" Type="Int32" Nullable="false" />
-    <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Statuses" FromRole="Statuses" ToRole="Orders" />
-  </EntityType>
-  <EntityType Name="Wallet">
-    <Key>
-      <PropertyRef Name="WalletID" />
-    </Key>
-    <Property Name="MemberID" Type="Int32" Nullable="false" />
-    <Property Name="WalletID" Type="Int32" Nullable="false" />
-    <Property Name="CouponID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="MemberAccount" Relationship="Self.FK_Wallet_MemberAccount" FromRole="Wallet" ToRole="MemberAccount" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_SmallType" FromRole="SmallType" ToRole="Product" />
   </EntityType>
   <Association Name="FK_ArguePic_Argument">
     <End Role="Argument" Type="Self.Argument" Multiplicity="1" />
@@ -298,7 +325,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Argument_Orders">
-    <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="1" />
     <End Role="Argument" Type="Self.Argument" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Orders">
@@ -357,9 +384,57 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_RegionList_CountryList">
+    <End Role="CountryList" Type="Self.CountryList" Multiplicity="0..1" />
+    <End Role="RegionList" Type="Self.RegionList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CountryList">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="RegionList">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Coupons">
+    <End Role="Coupons" Type="Self.Coupon" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coupons">
+        <PropertyRef Name="CouponID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="CouponID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Wallet_Coupons">
+    <End Role="Coupons" Type="Self.Coupon" Multiplicity="1" />
+    <End Role="OfficialCoupons" Type="Self.OfficialCoupon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coupons">
+        <PropertyRef Name="CouponID" />
+      </Principal>
+      <Dependent Role="OfficialCoupons">
+        <PropertyRef Name="CouponID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FAQ_FAQType">
+    <End Role="FAQType" Type="Self.FAQType" Multiplicity="1" />
+    <End Role="FAQ" Type="Self.FAQ" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FAQType">
+        <PropertyRef Name="FAQTypeID" />
+      </Principal>
+      <Dependent Role="FAQ">
+        <PropertyRef Name="FAQTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Follows_MemberAccount">
     <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
-    <End Role="Follows" Type="Self.Follows" Multiplicity="*" />
+    <End Role="Follows" Type="Self.Follow" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MemberAccount">
         <PropertyRef Name="MemberID" />
@@ -371,7 +446,7 @@
   </Association>
   <Association Name="FK_Follows_MemberAccount1">
     <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
-    <End Role="Follows" Type="Self.Follows" Multiplicity="*" />
+    <End Role="Follows" Type="Self.Follow" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MemberAccount">
         <PropertyRef Name="MemberID" />
@@ -383,7 +458,7 @@
   </Association>
   <Association Name="FK_Likes_MemberAccount">
     <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
-    <End Role="Likes" Type="Self.Likes" Multiplicity="*" />
+    <End Role="Likes" Type="Self.Like" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MemberAccount">
         <PropertyRef Name="MemberID" />
@@ -395,7 +470,7 @@
   </Association>
   <Association Name="FK_Likes_Product">
     <End Role="Product" Type="Self.Product" Multiplicity="1" />
-    <End Role="Likes" Type="Self.Likes" Multiplicity="*" />
+    <End Role="Likes" Type="Self.Like" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Product">
         <PropertyRef Name="ProductID" />
@@ -419,7 +494,7 @@
   </Association>
   <Association Name="FK_Orders_MemberAccount">
     <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
-    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MemberAccount">
         <PropertyRef Name="MemberID" />
@@ -443,19 +518,19 @@
   </Association>
   <Association Name="FK_Wallet_MemberAccount">
     <End Role="MemberAccount" Type="Self.MemberAccount" Multiplicity="1" />
-    <End Role="Wallet" Type="Self.Wallet" Multiplicity="*" />
+    <End Role="OfficialCoupons" Type="Self.OfficialCoupon" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MemberAccount">
         <PropertyRef Name="MemberID" />
       </Principal>
-      <Dependent Role="Wallet">
+      <Dependent Role="OfficialCoupons">
         <PropertyRef Name="MemberID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderDetails_Orders">
-    <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
-    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Orders">
         <PropertyRef Name="OrderID" />
@@ -467,7 +542,7 @@
   </Association>
   <Association Name="FK_OrderDetails_Product">
     <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="1" />
-    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ProductDetail">
         <PropertyRef Name="ProductDetailID" />
@@ -479,7 +554,7 @@
   </Association>
   <Association Name="FK_OrderDetails_Shipper">
     <End Role="Shipper" Type="Self.Shipper" Multiplicity="1" />
-    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Shipper">
         <PropertyRef Name="ShipperID" />
@@ -490,8 +565,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderDetails_ShippingStatuses">
-    <End Role="ShippingStatuses" Type="Self.ShippingStatuses" Multiplicity="1" />
-    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <End Role="ShippingStatuses" Type="Self.ShippingStatus" Multiplicity="1" />
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ShippingStatuses">
         <PropertyRef Name="ShippingStatusID" />
@@ -503,7 +578,7 @@
   </Association>
   <Association Name="FK_Orders_SalesCourt">
     <End Role="Product" Type="Self.Product" Multiplicity="1" />
-    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Product">
         <PropertyRef Name="ProductID" />
@@ -514,11 +589,11 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Orders_Statuses">
-    <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
-    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <End Role="OrderStatuses" Type="Self.OrderStatus" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Statuses">
-        <PropertyRef Name="StatusID" />
+      <Principal Role="OrderStatuses">
+        <PropertyRef Name="OrderStatusID" />
       </Principal>
       <Dependent Role="Orders">
         <PropertyRef Name="StatusID" />
@@ -585,100 +660,119 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="iSpanProjectEntities5" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="AD" EntityType="Self.AD" />
-    <EntitySet Name="ArguePic" EntityType="Self.ArguePic" />
-    <EntitySet Name="Argument" EntityType="Self.Argument" />
-    <EntitySet Name="ArgumentType" EntityType="Self.ArgumentType" />
-    <EntitySet Name="BigType" EntityType="Self.BigType" />
-    <EntitySet Name="Comment" EntityType="Self.Comment" />
-    <EntitySet Name="CommentPic" EntityType="Self.CommentPic" />
-    <EntitySet Name="FAQ" EntityType="Self.FAQ" />
-    <EntitySet Name="Follows" EntityType="Self.Follows" />
-    <EntitySet Name="Likes" EntityType="Self.Likes" />
-    <EntitySet Name="MemberAccount" EntityType="Self.MemberAccount" />
-    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" />
-    <EntitySet Name="Orders" EntityType="Self.Orders" />
-    <EntitySet Name="Payment" EntityType="Self.Payment" />
-    <EntitySet Name="Product" EntityType="Self.Product" />
-    <EntitySet Name="ProductDetail" EntityType="Self.ProductDetail" />
-    <EntitySet Name="ProductPic" EntityType="Self.ProductPic" />
-    <EntitySet Name="RegionList" EntityType="Self.RegionList" />
-    <EntitySet Name="Shipper" EntityType="Self.Shipper" />
-    <EntitySet Name="ShippingStatuses" EntityType="Self.ShippingStatuses" />
-    <EntitySet Name="SmallType" EntityType="Self.SmallType" />
-    <EntitySet Name="Statuses" EntityType="Self.Statuses" />
-    <EntitySet Name="Wallet" EntityType="Self.Wallet" />
+  <EntityContainer Name="iSpanProjectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ADs" EntityType="Self.AD" />
+    <EntitySet Name="ArguePics" EntityType="Self.ArguePic" />
+    <EntitySet Name="Arguments" EntityType="Self.Argument" />
+    <EntitySet Name="ArgumentTypes" EntityType="Self.ArgumentType" />
+    <EntitySet Name="BigTypes" EntityType="Self.BigType" />
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="CommentPics" EntityType="Self.CommentPic" />
+    <EntitySet Name="CountryLists" EntityType="Self.CountryList" />
+    <EntitySet Name="Coupons" EntityType="Self.Coupon" />
+    <EntitySet Name="FAQs" EntityType="Self.FAQ" />
+    <EntitySet Name="FAQTypes" EntityType="Self.FAQType" />
+    <EntitySet Name="Follows" EntityType="Self.Follow" />
+    <EntitySet Name="Likes" EntityType="Self.Like" />
+    <EntitySet Name="MemberAccounts" EntityType="Self.MemberAccount" />
+    <EntitySet Name="OfficialCoupons" EntityType="Self.OfficialCoupon" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="OrderStatuses" EntityType="Self.OrderStatus" />
+    <EntitySet Name="Payments" EntityType="Self.Payment" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="ProductDetails" EntityType="Self.ProductDetail" />
+    <EntitySet Name="ProductPics" EntityType="Self.ProductPic" />
+    <EntitySet Name="RegionLists" EntityType="Self.RegionList" />
+    <EntitySet Name="Shippers" EntityType="Self.Shipper" />
+    <EntitySet Name="ShippingStatuses" EntityType="Self.ShippingStatus" />
+    <EntitySet Name="SmallTypes" EntityType="Self.SmallType" />
     <AssociationSet Name="FK_ArguePic_Argument" Association="Self.FK_ArguePic_Argument">
-      <End Role="Argument" EntitySet="Argument" />
-      <End Role="ArguePic" EntitySet="ArguePic" />
+      <End Role="Argument" EntitySet="Arguments" />
+      <End Role="ArguePic" EntitySet="ArguePics" />
     </AssociationSet>
     <AssociationSet Name="FK_Argument_ArgumentType" Association="Self.FK_Argument_ArgumentType">
-      <End Role="ArgumentType" EntitySet="ArgumentType" />
-      <End Role="Argument" EntitySet="Argument" />
+      <End Role="ArgumentType" EntitySet="ArgumentTypes" />
+      <End Role="Argument" EntitySet="Arguments" />
     </AssociationSet>
     <AssociationSet Name="FK_Argument_Orders" Association="Self.FK_Argument_Orders">
       <End Role="Orders" EntitySet="Orders" />
-      <End Role="Argument" EntitySet="Argument" />
+      <End Role="Argument" EntitySet="Arguments" />
     </AssociationSet>
     <AssociationSet Name="FK_SmallType_BigType" Association="Self.FK_SmallType_BigType">
-      <End Role="BigType" EntitySet="BigType" />
-      <End Role="SmallType" EntitySet="SmallType" />
+      <End Role="BigType" EntitySet="BigTypes" />
+      <End Role="SmallType" EntitySet="SmallTypes" />
     </AssociationSet>
     <AssociationSet Name="FK_Comment_MemberAccount" Association="Self.FK_Comment_MemberAccount">
-      <End Role="MemberAccount" EntitySet="MemberAccount" />
-      <End Role="Comment" EntitySet="Comment" />
+      <End Role="MemberAccount" EntitySet="MemberAccounts" />
+      <End Role="Comment" EntitySet="Comments" />
     </AssociationSet>
     <AssociationSet Name="FK_Comment_SalesCourt" Association="Self.FK_Comment_SalesCourt">
-      <End Role="Product" EntitySet="Product" />
-      <End Role="Comment" EntitySet="Comment" />
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Comment" EntitySet="Comments" />
     </AssociationSet>
     <AssociationSet Name="FK_CommentPic_Comment" Association="Self.FK_CommentPic_Comment">
-      <End Role="Comment" EntitySet="Comment" />
-      <End Role="CommentPic" EntitySet="CommentPic" />
+      <End Role="Comment" EntitySet="Comments" />
+      <End Role="CommentPic" EntitySet="CommentPics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegionList_CountryList" Association="Self.FK_RegionList_CountryList">
+      <End Role="CountryList" EntitySet="CountryLists" />
+      <End Role="RegionList" EntitySet="RegionLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Coupons" Association="Self.FK_Orders_Coupons">
+      <End Role="Coupons" EntitySet="Coupons" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Wallet_Coupons" Association="Self.FK_Wallet_Coupons">
+      <End Role="Coupons" EntitySet="Coupons" />
+      <End Role="OfficialCoupons" EntitySet="OfficialCoupons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FAQ_FAQType" Association="Self.FK_FAQ_FAQType">
+      <End Role="FAQType" EntitySet="FAQTypes" />
+      <End Role="FAQ" EntitySet="FAQs" />
     </AssociationSet>
     <AssociationSet Name="FK_Follows_MemberAccount" Association="Self.FK_Follows_MemberAccount">
-      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="MemberAccount" EntitySet="MemberAccounts" />
       <End Role="Follows" EntitySet="Follows" />
     </AssociationSet>
     <AssociationSet Name="FK_Follows_MemberAccount1" Association="Self.FK_Follows_MemberAccount1">
-      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="MemberAccount" EntitySet="MemberAccounts" />
       <End Role="Follows" EntitySet="Follows" />
     </AssociationSet>
     <AssociationSet Name="FK_Likes_MemberAccount" Association="Self.FK_Likes_MemberAccount">
-      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="MemberAccount" EntitySet="MemberAccounts" />
       <End Role="Likes" EntitySet="Likes" />
     </AssociationSet>
     <AssociationSet Name="FK_Likes_Product" Association="Self.FK_Likes_Product">
-      <End Role="Product" EntitySet="Product" />
+      <End Role="Product" EntitySet="Products" />
       <End Role="Likes" EntitySet="Likes" />
     </AssociationSet>
     <AssociationSet Name="FK_MemberAccount_RegionList" Association="Self.FK_MemberAccount_RegionList">
-      <End Role="RegionList" EntitySet="RegionList" />
-      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="RegionList" EntitySet="RegionLists" />
+      <End Role="MemberAccount" EntitySet="MemberAccounts" />
     </AssociationSet>
     <AssociationSet Name="FK_Orders_MemberAccount" Association="Self.FK_Orders_MemberAccount">
-      <End Role="MemberAccount" EntitySet="MemberAccount" />
+      <End Role="MemberAccount" EntitySet="MemberAccounts" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
     <AssociationSet Name="FK_SalesCourt_MemberAccount" Association="Self.FK_SalesCourt_MemberAccount">
-      <End Role="MemberAccount" EntitySet="MemberAccount" />
-      <End Role="Product" EntitySet="Product" />
+      <End Role="MemberAccount" EntitySet="MemberAccounts" />
+      <End Role="Product" EntitySet="Products" />
     </AssociationSet>
     <AssociationSet Name="FK_Wallet_MemberAccount" Association="Self.FK_Wallet_MemberAccount">
-      <End Role="MemberAccount" EntitySet="MemberAccount" />
-      <End Role="Wallet" EntitySet="Wallet" />
+      <End Role="MemberAccount" EntitySet="MemberAccounts" />
+      <End Role="OfficialCoupons" EntitySet="OfficialCoupons" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderDetails_Orders" Association="Self.FK_OrderDetails_Orders">
       <End Role="Orders" EntitySet="Orders" />
       <End Role="OrderDetails" EntitySet="OrderDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderDetails_Product" Association="Self.FK_OrderDetails_Product">
-      <End Role="ProductDetail" EntitySet="ProductDetail" />
+      <End Role="ProductDetail" EntitySet="ProductDetails" />
       <End Role="OrderDetails" EntitySet="OrderDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderDetails_Shipper" Association="Self.FK_OrderDetails_Shipper">
-      <End Role="Shipper" EntitySet="Shipper" />
+      <End Role="Shipper" EntitySet="Shippers" />
       <End Role="OrderDetails" EntitySet="OrderDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderDetails_ShippingStatuses" Association="Self.FK_OrderDetails_ShippingStatuses">
@@ -686,191 +780,32 @@
       <End Role="OrderDetails" EntitySet="OrderDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_Orders_SalesCourt" Association="Self.FK_Orders_SalesCourt">
-      <End Role="Product" EntitySet="Product" />
+      <End Role="Product" EntitySet="Products" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
     <AssociationSet Name="FK_Orders_Statuses" Association="Self.FK_Orders_Statuses">
-      <End Role="Statuses" EntitySet="Statuses" />
-      <End Role="Orders" EntitySet="Orders" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Product_SalesCourt" Association="Self.FK_Product_SalesCourt">
-      <End Role="Product" EntitySet="Product" />
-      <End Role="ProductDetail" EntitySet="ProductDetail" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Product_Shipper" Association="Self.FK_Product_Shipper">
-      <End Role="Shipper" EntitySet="Shipper" />
-      <End Role="Product" EntitySet="Product" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Product_SmallType" Association="Self.FK_Product_SmallType">
-      <End Role="SmallType" EntitySet="SmallType" />
-      <End Role="Product" EntitySet="Product" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProductPic_Product" Association="Self.FK_ProductPic_Product">
-      <End Role="Product" EntitySet="Product" />
-      <End Role="ProductPic" EntitySet="ProductPic" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SalesCourt_RegionList" Association="Self.FK_SalesCourt_RegionList">
-      <End Role="RegionList" EntitySet="RegionList" />
-      <End Role="Product" EntitySet="Product" />
-    </AssociationSet>
-    <EntitySet Name="CountryList" EntityType="iSpanProjectModel.CountryList" />
-    <EntitySet Name="FAQType" EntityType="iSpanProjectModel.FAQType" />
-    <EntitySet Name="OfficialCoupons" EntityType="iSpanProjectModel.OfficialCoupons" />
-    <EntitySet Name="OrderStatuses" EntityType="iSpanProjectModel.OrderStatuses" />
-    <AssociationSet Name="FK_RegionList_CountryList" Association="iSpanProjectModel.FK_RegionList_CountryList">
-      <End Role="CountryList" EntitySet="CountryList" />
-      <End Role="RegionList" EntitySet="RegionList" />
-    </AssociationSet>
-    <AssociationSet Name="FK_FAQ_FAQType" Association="iSpanProjectModel.FK_FAQ_FAQType">
-      <End Role="FAQType" EntitySet="FAQType" />
-      <End Role="FAQ" EntitySet="FAQ" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Wallet_MemberAccount1" Association="iSpanProjectModel.FK_Wallet_MemberAccount1">
-      <End Role="MemberAccount" EntitySet="MemberAccount" />
-      <End Role="OfficialCoupons" EntitySet="OfficialCoupons" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Orders_Statuses1" Association="iSpanProjectModel.FK_Orders_Statuses1">
       <End Role="OrderStatuses" EntitySet="OrderStatuses" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
-    <EntitySet Name="Coupons" EntityType="iSpanProjectModel.Coupons" />
-    <EntitySet Name="sysdiagrams" EntityType="iSpanProjectModel.sysdiagrams" />
-    <AssociationSet Name="FK_Orders_Coupons" Association="iSpanProjectModel.FK_Orders_Coupons">
-      <End Role="Coupons" EntitySet="Coupons" />
-      <End Role="Orders" EntitySet="Orders" />
+    <AssociationSet Name="FK_Product_SalesCourt" Association="Self.FK_Product_SalesCourt">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductDetail" EntitySet="ProductDetails" />
     </AssociationSet>
-    <AssociationSet Name="FK_Wallet_Coupons" Association="iSpanProjectModel.FK_Wallet_Coupons">
-      <End Role="Coupons" EntitySet="Coupons" />
-      <End Role="OfficialCoupons" EntitySet="OfficialCoupons" />
+    <AssociationSet Name="FK_Product_Shipper" Association="Self.FK_Product_Shipper">
+      <End Role="Shipper" EntitySet="Shippers" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_SmallType" Association="Self.FK_Product_SmallType">
+      <End Role="SmallType" EntitySet="SmallTypes" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductPic_Product" Association="Self.FK_ProductPic_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductPic" EntitySet="ProductPics" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesCourt_RegionList" Association="Self.FK_SalesCourt_RegionList">
+      <End Role="RegionList" EntitySet="RegionLists" />
+      <End Role="Product" EntitySet="Products" />
     </AssociationSet>
   </EntityContainer>
-  <EntityType Name="CountryList">
-    <Key>
-      <PropertyRef Name="CountryID" />
-    </Key>
-    <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CountryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="RegionList" Relationship="iSpanProjectModel.FK_RegionList_CountryList" FromRole="CountryList" ToRole="RegionList" />
-  </EntityType>
-  <EntityType Name="FAQType">
-    <Key>
-      <PropertyRef Name="FAQTypeID" />
-    </Key>
-    <Property Name="FAQTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FAQTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="FAQ" Relationship="iSpanProjectModel.FK_FAQ_FAQType" FromRole="FAQType" ToRole="FAQ" />
-  </EntityType>
-  <EntityType Name="OfficialCoupons">
-    <Key>
-      <PropertyRef Name="OfficialCouponsID" />
-    </Key>
-    <Property Name="MemberID" Type="Int32" Nullable="false" />
-    <Property Name="OfficialCouponsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CouponID" Type="Int32" Nullable="false" />
-    <Property Name="ExpireN_A" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="MemberAccount" Relationship="iSpanProjectModel.FK_Wallet_MemberAccount1" FromRole="OfficialCoupons" ToRole="MemberAccount" />
-    <NavigationProperty Name="Coupons" Relationship="iSpanProjectModel.FK_Wallet_Coupons" FromRole="OfficialCoupons" ToRole="Coupons" />
-  </EntityType>
-  <EntityType Name="OrderStatuses">
-    <Key>
-      <PropertyRef Name="OrderStatusID" />
-    </Key>
-    <Property Name="OrderStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="OrderStatusName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Orders" Relationship="iSpanProjectModel.FK_Orders_Statuses1" FromRole="OrderStatuses" ToRole="Orders" />
-  </EntityType>
-  <Association Name="FK_RegionList_CountryList">
-    <End Type="iSpanProjectModel.CountryList" Role="CountryList" Multiplicity="0..1" />
-    <End Type="iSpanProjectModel.RegionList" Role="RegionList" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CountryList">
-        <PropertyRef Name="CountryID" />
-      </Principal>
-      <Dependent Role="RegionList">
-        <PropertyRef Name="CountryID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_FAQ_FAQType">
-    <End Type="iSpanProjectModel.FAQType" Role="FAQType" Multiplicity="1" />
-    <End Type="iSpanProjectModel.FAQ" Role="FAQ" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FAQType">
-        <PropertyRef Name="FAQTypeID" />
-      </Principal>
-      <Dependent Role="FAQ">
-        <PropertyRef Name="FAQTypeID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Wallet_MemberAccount1">
-    <End Type="iSpanProjectModel.MemberAccount" Role="MemberAccount" Multiplicity="1" />
-    <End Type="iSpanProjectModel.OfficialCoupons" Role="OfficialCoupons" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MemberAccount">
-        <PropertyRef Name="MemberID" />
-      </Principal>
-      <Dependent Role="OfficialCoupons">
-        <PropertyRef Name="MemberID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Orders_Statuses1">
-    <End Type="iSpanProjectModel.OrderStatuses" Role="OrderStatuses" Multiplicity="1" />
-    <End Type="iSpanProjectModel.Orders" Role="Orders" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="OrderStatuses">
-        <PropertyRef Name="OrderStatusID" />
-      </Principal>
-      <Dependent Role="Orders">
-        <PropertyRef Name="StatusID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="Coupons">
-    <Key>
-      <PropertyRef Name="CouponID" />
-    </Key>
-    <Property Name="CouponID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CouponName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="ExpiredDate" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Discount" Type="Single" Nullable="false" />
-    <NavigationProperty Name="Orders" Relationship="iSpanProjectModel.FK_Orders_Coupons" FromRole="Coupons" ToRole="Orders" />
-    <NavigationProperty Name="OfficialCoupons" Relationship="iSpanProjectModel.FK_Wallet_Coupons" FromRole="Coupons" ToRole="OfficialCoupons" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
-  <Association Name="FK_Orders_Coupons">
-    <End Type="iSpanProjectModel.Coupons" Role="Coupons" Multiplicity="1" />
-    <End Type="iSpanProjectModel.Orders" Role="Orders" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Coupons">
-        <PropertyRef Name="CouponID" />
-      </Principal>
-      <Dependent Role="Orders">
-        <PropertyRef Name="CouponID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Wallet_Coupons">
-    <End Type="iSpanProjectModel.Coupons" Role="Coupons" Multiplicity="1" />
-    <End Type="iSpanProjectModel.OfficialCoupons" Role="OfficialCoupons" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Coupons">
-        <PropertyRef Name="CouponID" />
-      </Principal>
-      <Dependent Role="OfficialCoupons">
-        <PropertyRef Name="CouponID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

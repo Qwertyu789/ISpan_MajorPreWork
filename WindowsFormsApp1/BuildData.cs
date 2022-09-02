@@ -13,7 +13,7 @@ namespace MajorHW
 {
     public partial class BuildData : Form
     {
-        iSpanProjectEntities5 newdb = new iSpanProjectEntities5();
+        iSpanProjectEntities newdb = new iSpanProjectEntities();
         byte[] bytes;
         public BuildData()
         {
@@ -21,25 +21,25 @@ namespace MajorHW
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            RegionList rg0 = new RegionList
-            {
-                RegionID = 0,
-                Region = "海外"
-            };
-            RegionList rg1 = new RegionList
-            {
-                RegionID = 1,
-                Region = "台北市"
-            };
-            RegionList rg2 = new RegionList
-            {
-                RegionID = 2,
-                Region = "新北市"
-            };
-            newdb.RegionList.Add(rg0);
-            newdb.RegionList.Add(rg1);
-            newdb.RegionList.Add(rg2);
-            newdb.SaveChanges();
+            //RegionList rg0 = new RegionList
+            //{
+            //    RegionID = 0,
+            //    Region = "海外"
+            //};
+            //RegionList rg1 = new RegionList
+            //{
+            //    RegionID = 1,
+            //    Region = "台北市"
+            //};
+            //RegionList rg2 = new RegionList
+            //{
+            //    RegionID = 2,
+            //    Region = "新北市"
+            //};
+            //newdb.RegionList.Add(rg0);
+            //newdb.RegionList.Add(rg1);
+            //newdb.RegionList.Add(rg2);
+            //newdb.SaveChanges();
 
             System.IO.MemoryStream ms = new System.IO.MemoryStream();
             this.pb1.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
@@ -187,6 +187,48 @@ namespace MajorHW
         {
             this.dataGridView1.DataSource = null;
             this.dataGridView1.DataSource = this.newdb.Product.ToList();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //帳號類 ID1
+            FAQType newfaqt1 = new FAQType
+            {
+                FAQTypeName = "新進大補帖！"
+            };
+            newdb.FAQType.Add(newfaqt1);
+            newdb.SaveChanges();
+            //新進會員
+            FAQ fqt1fq1 = new FAQ
+            {
+                FAQTypeID=1,
+                Question="[LV.1] 蝦到爆？這是什麼？",
+                Answer= "「你是新警察對吧？老警察才不會點進幫助中心的呢！」\r\n" +
+                "　　蝦到爆是一個電子商務平台，您可以在此發掘您心儀的品牌，悠游蝦到爆上無數間大大小小的商家所提供最高品質的享受！\r\n\r\n" +
+                "　　除了購物，您也能化作商務高手，進入蝦到爆裡開拓出自己的一片沃土，蝦到爆會提供各式成為賣家的詳盡說明，還請移步至我們更深入的賣家指南。"
+            };
+            FAQ fqt1fq2 = new FAQ
+            {
+                FAQTypeID = 1,
+                Question = "[LV.2] 那我要怎麼開始？是不是已經太晚加入了？",
+                Answer = "「人生永遠沒有太晚的開始。」\r\n" +
+                "　　蝦到爆為了每位\r\n\r\n" +
+                "　　除了購物，您也能化作商務高手，進入蝦到爆裡開拓出自己的一片沃土，蝦到爆會提供各式成為賣家的詳盡說明，還請移步至我們更深入的賣家指南。"
+            };
+            newdb.FAQ.Add(fqt1fq1);
+            newdb.FAQ.Add(fqt1fq2);
+            newdb.SaveChanges();
+            FAQType newfaqt2 = new FAQType
+            {
+                FAQTypeName = "賣家指南！"
+            };
+            FAQ fat2fq1 = new FAQ
+            {
+                FAQTypeID = 2,
+                Question = "我有個夢想，就是成立一間最大的蝦到爆賣場！那我該怎麼開始？",
+                Answer = "讚哦！現在就點開個人商品區，跟著我們淺顯易懂的按鈕標示一步一步來完成第一次的上架吧！"
+            };
+
         }
     }
 }

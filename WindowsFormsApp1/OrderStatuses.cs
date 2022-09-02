@@ -12,23 +12,18 @@ namespace WindowsFormsApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class Argument
+    public partial class OrderStatuses
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Argument()
+        public OrderStatuses()
         {
-            this.ArguePic = new HashSet<ArguePic>();
+            this.Orders = new HashSet<Orders>();
         }
     
-        public int OrderID { get; set; }
-        public int ArgumentID { get; set; }
-        public bool ChangeorReturn { get; set; }
-        public string Reason { get; set; }
-        public int ArgumentTypeID { get; set; }
+        public int OrderStatusID { get; set; }
+        public string OrderStatusName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ArguePic> ArguePic { get; set; }
-        public virtual ArgumentType ArgumentType { get; set; }
-        public virtual Orders Orders { get; set; }
+        public virtual ICollection<Orders> Orders { get; set; }
     }
 }

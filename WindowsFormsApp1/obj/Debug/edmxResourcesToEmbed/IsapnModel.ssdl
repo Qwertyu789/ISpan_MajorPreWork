@@ -240,16 +240,6 @@
     <Property Name="SmallTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="BigTypeID" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
   <Association Name="FK_ArguePic_Argument">
     <End Role="Argument" Type="Self.Argument" Multiplicity="1" />
     <End Role="ArguePic" Type="Self.ArguePic" Multiplicity="*" />
@@ -637,7 +627,6 @@
     <EntitySet Name="Shipper" EntityType="Self.Shipper" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShippingStatuses" EntityType="Self.ShippingStatuses" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SmallType" EntityType="Self.SmallType" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_ArguePic_Argument" Association="Self.FK_ArguePic_Argument">
       <End Role="Argument" EntitySet="Argument" />
       <End Role="ArguePic" EntitySet="ArguePic" />

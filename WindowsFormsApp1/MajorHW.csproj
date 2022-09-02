@@ -86,19 +86,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AD.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ArguePic.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Argument.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ArgumentType.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BigType.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BuildData.cs">
       <SubType>Form</SubType>
@@ -107,37 +107,43 @@
       <DependentUpon>BuildData.cs</DependentUpon>
     </Compile>
     <Compile Include="Comment.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CommentPic.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CountryList.cs">
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Coupons.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FAQ.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FAQType.cs">
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Follows.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Ispan.Context.cs">
+    <Compile Include="IspanModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Ispan.Context.tt</DependentUpon>
+      <DependentUpon>IspanModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Ispan.cs">
+    <Compile Include="IspanModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Ispan.Designer.cs">
+    <Compile Include="IspanModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Ispan.edmx</DependentUpon>
+      <DependentUpon>IspanModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Likes.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -152,22 +158,28 @@
       <DependentUpon>MainPage.cs</DependentUpon>
     </Compile>
     <Compile Include="MemberAccount.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OfficialCoupons.cs">
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderDetails.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Orders.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderStatuses.cs">
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Payment.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductDetail.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductDetails.cs">
       <SubType>Form</SubType>
@@ -183,7 +195,7 @@
       <DependentUpon>ProductIcon.cs</DependentUpon>
     </Compile>
     <Compile Include="ProductPic.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -193,8 +205,14 @@
     <Compile Include="MemberUpdate.Designer.cs">
       <DependentUpon>MemberUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\TEST.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Properties\TEST.Designer.cs">
+      <DependentUpon>TEST.cs</DependentUpon>
+    </Compile>
     <Compile Include="RegionList.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Sells.cs">
       <SubType>Form</SubType>
@@ -203,19 +221,13 @@
       <DependentUpon>Sells.cs</DependentUpon>
     </Compile>
     <Compile Include="Shipper.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ShippingStatuses.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SmallType.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Statuses.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Wallet.cs">
-      <DependentUpon>Ispan.tt</DependentUpon>
+      <DependentUpon>IspanModel.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="BuildData.resx">
       <DependentUpon>BuildData.cs</DependentUpon>
@@ -247,12 +259,12 @@
     <EmbeddedResource Include="Sells.resx">
       <DependentUpon>Sells.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="Ispan.edmx">
+    <EntityDeploy Include="IspanModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Ispan.Designer.cs</LastGenOutput>
+      <LastGenOutput>IspanModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Ispan.edmx.diagram">
-      <DependentUpon>Ispan.edmx</DependentUpon>
+    <None Include="IspanModel.edmx.diagram">
+      <DependentUpon>IspanModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -284,15 +296,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Ispan.Context.tt">
+    <Content Include="IspanModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Ispan.edmx</DependentUpon>
-      <LastGenOutput>Ispan.Context.cs</LastGenOutput>
+      <DependentUpon>IspanModel.edmx</DependentUpon>
+      <LastGenOutput>IspanModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Ispan.tt">
+    <Content Include="IspanModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Ispan.edmx</DependentUpon>
-      <LastGenOutput>Ispan.cs</LastGenOutput>
+      <DependentUpon>IspanModel.edmx</DependentUpon>
+      <LastGenOutput>IspanModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

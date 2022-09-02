@@ -12,13 +12,18 @@ namespace WindowsFormsApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class Wallet
+    public partial class FAQType
     {
-        public int MemberID { get; set; }
-        public int WalletID { get; set; }
-        public int CouponID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public FAQType()
+        {
+            this.FAQ = new HashSet<FAQ>();
+        }
     
-        public virtual Coupons Coupons { get; set; }
-        public virtual MemberAccount MemberAccount { get; set; }
+        public int FAQTypeID { get; set; }
+        public string FAQTypeName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FAQ> FAQ { get; set; }
     }
 }
